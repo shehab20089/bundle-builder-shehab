@@ -116,6 +116,9 @@
   --color-bundle-link: var(--bundle-link);
   --shadow-bundle-card: 0 8px 18px rgb(39 52 86 / 5%);
   --shadow-bundle-open: inset 0 0 0 1px rgb(113 91 246 / 3%);
+  --animate-bundle-check-pop: bundle-check-pop 520ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-bundle-check-ring: bundle-check-ring 900ms ease-out both;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -242,6 +245,32 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+@keyframes bundle-check-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.55) rotate(-12deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.08) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes bundle-check-ring {
+  0% {
+    opacity: 0.45;
+    transform: scale(0.78);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
 }
 
 @layer base {
