@@ -1,61 +1,25 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
-import {
-  bundleProducts,
-  bundleSteps,
-  getDefaultSelection,
-  initialSelections,
-} from "../apis/bundle-builder-data";
+import { bundleProducts, bundleSteps } from "../apis/bundle-builder-data";
 import type {
   BundleProduct,
-  ProductSelection,
   ReviewLineItem,
-  SelectionState,
   StepId,
 } from "../types/bundle-builder";
-
-const productById = new Map(
-  bundleProducts.map((product) => [product.id, product]),
-);
-
-function createInitialSelectionState() {
-  return bundleProducts.reduce<SelectionState>((state, product) => {
-    state[product.id] = {
-      ...getDefaultSelection(product),
-      ...initialSelections[product.id],
-      quantities: {
-        ...initialSelections[product.id]?.quantities,
-      },
-    };
-
-    return state;
-  }, {});
-}
-
-function getSelection(
-  state: SelectionState,
-  product: BundleProduct,
-): ProductSelection {
-  return state[product.id] ?? getDefaultSelection(product);
-}
-
-function getQuantityForSelection(
-  selection: ProductSelection,
-  variantId: string,
-) {
-  return selection.quantities[variantId] ?? 0;
-}
-
-function getProductTotal(selection: ProductSelection) {
-  return Object.values(selection.quantities).reduce(
-    (total, quantity) => total + quantity,
-    0,
-  );
-}
+import {
+  getProductTotal,
+  getQuantityForSelection,
+  getSelection,
+  useBundleBuilderStore,
+} from "./use-bundle-builder-store";
 
 export function useBundleBuilder() {
-  const [openStep, setOpenStep] = useState<StepId>("cameras");
-  const [selections, setSelections] = useState(createInitialSelectionState);
+  const openStep = useBundleBuilderStore((state) => state.openStep);
+  const selections = useBundleBuilderStore((state) => state.selections);
+  const setOpenStep = useBundleBuilderStore((state) => state.setOpenStep);
+  const selectVariant = useBundleBuilderStore((state) => state.selectVariant);
+  const updateQuantity = useBundleBuilderStore((state) => state.updateQuantity);
+  const goToNextStep = useBundleBuilderStore((state) => state.goToNextStep);
 
   const selectedLineItems = useMemo<ReviewLineItem[]>(() => {
     return bundleProducts.flatMap((product) => {
@@ -119,67 +83,6 @@ export function useBundleBuilder() {
     return step.products.filter((product) => {
       return getProductTotalQuantity(product) > 0;
     }).length;
-  }
-
-  function selectVariant(productId: string, variantId: string) {
-    setSelections((current) => {
-      const product = productById.get(productId);
-
-      if (!product) {
-        return current;
-      }
-
-      const selection = getSelection(current, product);
-
-      return {
-        ...current,
-        [productId]: {
-          ...selection,
-          activeVariantId: variantId,
-        },
-      };
-    });
-  }
-
-  function updateQuantity(
-    productId: string,
-    amount: number,
-    variantId?: string,
-  ) {
-    setSelections((current) => {
-      const product = productById.get(productId);
-
-      if (!product) {
-        return current;
-      }
-
-      const selection = getSelection(current, product);
-      const quantityKey = variantId ?? selection.activeVariantId;
-      const nextQuantity = Math.max(
-        0,
-        getQuantityForSelection(selection, quantityKey) + amount,
-      );
-
-      return {
-        ...current,
-        [productId]: {
-          ...selection,
-          quantities: {
-            ...selection.quantities,
-            [quantityKey]: nextQuantity,
-          },
-        },
-      };
-    });
-  }
-
-  function goToNextStep(stepId: StepId) {
-    const currentIndex = bundleSteps.findIndex((step) => step.id === stepId);
-    const nextStep = bundleSteps[currentIndex + 1];
-
-    if (nextStep) {
-      setOpenStep(nextStep.id);
-    }
   }
 
   return {

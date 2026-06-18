@@ -255,7 +255,7 @@ function ReviewLine({ item, onDecrement, onIncrement }: ReviewLineProps) {
             {currencyFormatter.format(item.compareAt)}
           </div>
         ) : null}
-        <div className="text-[var(--bundle-purple)]">
+        <div className="font-semibold text-[var(--bundle-purple)]">
           {item.price === 0 ? "FREE" : currencyFormatter.format(item.price)}
         </div>
       </div>
