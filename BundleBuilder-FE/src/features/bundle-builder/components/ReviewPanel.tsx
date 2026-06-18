@@ -1,5 +1,3 @@
-import { ShieldIcon, TruckIcon } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
@@ -9,6 +7,8 @@ import type { ReviewLineItem, StepId } from "../types/bundle-builder";
 import { ProductVisual } from "./ProductVisual";
 import { QuantityStepper } from "./QuantityStepper";
 
+import ShippingTruckIcon from "../../../../Icons/shipping-truck.svg?react";
+import WyzeShieldIcon from "../../../../Icons/wyze-shield.svg?react";
 import satisfactionBadgeImage from "../../../../Images/satisfactionBadge.png";
 
 type ReviewPanelProps = {
@@ -109,9 +109,9 @@ export function ReviewPanel({
                 )}
               >
                 <div className="flex min-w-0 items-center gap-1.5">
-                  <ShieldIcon
-                    className="size-4 shrink-0 text-[#3C8DFF]"
-                    strokeWidth={1.5}
+                  <WyzeShieldIcon
+                    className="h-6 w-5 shrink-0"
+                    aria-hidden="true"
                   />
                   <p
                     className="min-w-0 truncate text-[16px] leading-none tracking-[-0.002em]"
@@ -143,10 +143,11 @@ export function ReviewPanel({
                     `pb-3 ${reviewSeparator}`,
                 )}
               >
-                <div className="flex items-center gap-2 text-[#0B0D10]">
-                  <span className="flex size-7 items-center justify-center rounded-md bg-white text-teal-400">
-                    <TruckIcon className="size-4" strokeWidth={2} />
-                  </span>
+                <div className="flex items-center gap-2.5 text-[#0B0D10]">
+                  <ShippingTruckIcon
+                    className="size-[41px] shrink-0"
+                    aria-hidden="true"
+                  />
                   <span className="text-[14px] leading-4 tracking-[0.005em] text-[#0B0D10]">
                     {item.label}
                   </span>
