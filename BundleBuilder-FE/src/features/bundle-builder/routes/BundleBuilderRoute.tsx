@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
 
-function App() {
+import heroImg from '../../../assets/hero.png'
+import reactLogo from '../../../assets/react.svg'
+import viteLogo from '../../../assets/vite.svg'
+import './BundleBuilderRoute.css'
+
+export function BundleBuilderRoute() {
   const [count, setCount] = useState(0)
 
   return (
@@ -18,13 +19,14 @@ function App() {
         <div>
           <h1>Get started</h1>
           <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+            Edit <code>src/features/bundle-builder/routes</code> and save to
+            test <code>HMR</code>
           </p>
         </div>
         <button
           type="button"
           className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          onClick={() => setCount((currentCount) => currentCount + 1)}
         >
           Count is {count}
         </button>
@@ -118,5 +120,3 @@ function App() {
     </>
   )
 }
-
-export default App
