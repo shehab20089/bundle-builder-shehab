@@ -32,7 +32,7 @@ export function BundleBuilderScreen() {
       style={
         {
           "--bundle-panel": "#eef6ff",
-          "--bundle-purple": "#5634e8",
+          "--bundle-purple": "#4E2FD2",
           "--bundle-purple-dark": "#4528c9",
           "--bundle-border": "#d7dce7",
         } as CSSProperties

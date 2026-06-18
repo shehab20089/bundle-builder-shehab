@@ -1,26 +1,26 @@
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-import type { BundleProduct } from "../types/bundle-builder"
-import { ProductVisual } from "./ProductVisual"
-import { QuantityStepper } from "./QuantityStepper"
+import type { BundleProduct } from "../types/bundle-builder";
+import { ProductVisual } from "./ProductVisual";
+import { QuantityStepper } from "./QuantityStepper";
 
 type ProductCardProps = {
-  product: BundleProduct
-  activeVariantId: string
-  activeQuantity: number
-  totalQuantity: number
-  className?: string
-  onSelectVariant: (variantId: string) => void
-  onDecrement: () => void
-  onIncrement: () => void
-}
+  product: BundleProduct;
+  activeVariantId: string;
+  activeQuantity: number;
+  totalQuantity: number;
+  className?: string;
+  onSelectVariant: (variantId: string) => void;
+  onDecrement: () => void;
+  onIncrement: () => void;
+};
 
 const currencyFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
-})
+});
 
 export function ProductCard({
   product,
@@ -32,14 +32,14 @@ export function ProductCard({
   onDecrement,
   onIncrement,
 }: ProductCardProps) {
-  const isSelected = totalQuantity > 0
+  const isSelected = totalQuantity > 0;
 
   return (
     <article
       className={cn(
         "relative grid min-h-[136px] grid-cols-[92px_minmax(0,1fr)] gap-2.5 rounded-lg border-2 bg-white p-2.5 shadow-[0_8px_18px_rgba(39,52,86,0.05)] transition",
         isSelected
-          ? "border-[var(--bundle-purple)]"
+          ? "border-[var(--bundle-purple)]/70"
           : "border-transparent hover:border-violet-100",
         className,
       )}
@@ -75,7 +75,7 @@ export function ProductCard({
         {product.variants ? (
           <div className="flex flex-wrap gap-1" aria-label="Color options">
             {product.variants.map((variant) => {
-              const selected = variant.id === activeVariantId
+              const selected = variant.id === activeVariantId;
 
               return (
                 <Button
@@ -99,7 +99,7 @@ export function ProductCard({
                   />
                   {variant.label}
                 </Button>
-              )
+              );
             })}
           </div>
         ) : null}
@@ -127,5 +127,5 @@ export function ProductCard({
         </div>
       </div>
     </article>
-  )
+  );
 }
