@@ -20,6 +20,9 @@ export function useBundleBuilder() {
   const selectVariant = useBundleBuilderStore((state) => state.selectVariant);
   const updateQuantity = useBundleBuilderStore((state) => state.updateQuantity);
   const goToNextStep = useBundleBuilderStore((state) => state.goToNextStep);
+  const saveCurrentConfiguration = useBundleBuilderStore(
+    (state) => state.saveCurrentConfiguration,
+  );
 
   const selectedLineItems = useMemo<ReviewLineItem[]>(() => {
     return bundleProducts.flatMap((product) => {
@@ -98,5 +101,6 @@ export function useBundleBuilder() {
     selectVariant,
     updateQuantity,
     goToNextStep,
+    saveCurrentConfiguration,
   };
 }

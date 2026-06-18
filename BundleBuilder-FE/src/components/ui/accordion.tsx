@@ -2,8 +2,8 @@ import * as React from "react";
 import { Accordion as AccordionPrimitive } from "radix-ui";
 
 import { cn } from "@/lib/utils";
-import CarrotDownIcon from "../../../Icons/carrot-down.svg?react";
-import CarrotUpIcon from "../../../Icons/carrot-up.svg?react";
+import CarrotDownIcon from "./assets/carrot-down.svg?react";
+import CarrotUpIcon from "./assets/carrot-up.svg?react";
 
 function Accordion({
   className,

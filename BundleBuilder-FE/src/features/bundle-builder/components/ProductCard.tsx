@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 import type { BundleProduct } from "../types/bundle-builder";
+import { formatCurrency } from "../utils/formatters";
 import { ProductVisual } from "./ProductVisual";
 import { QuantityStepper } from "./QuantityStepper";
 
@@ -16,11 +17,6 @@ type ProductCardProps = {
   onDecrement: () => void;
   onIncrement: () => void;
 };
-
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
 
 export function ProductCard({
   product,
@@ -140,13 +136,11 @@ export function ProductCard({
             product.compareAt &&
             product.compareAt > product.price ? (
               <div className="text-bundle-danger mb-[3px] text-base leading-none line-through">
-                {currencyFormatter.format(product.compareAt)}
+                {formatCurrency(product.compareAt)}
               </div>
             ) : null}
             <div className="text-bundle-price text-base leading-none">
-              {product.price === 0
-                ? "FREE"
-                : currencyFormatter.format(product.price)}
+              {product.price === 0 ? "FREE" : formatCurrency(product.price)}
             </div>
           </div>
         </div>

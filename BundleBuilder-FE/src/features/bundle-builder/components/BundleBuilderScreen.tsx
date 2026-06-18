@@ -15,10 +15,10 @@ import type { StepId } from "../types/bundle-builder";
 import { ProductCard } from "./ProductCard";
 import { ReviewPanel } from "./ReviewPanel";
 
-import CameraStepIcon from "../../../../Icons/camera.svg?react";
-import ProtectionStepIcon from "../../../../Icons/extra-protection.svg?react";
-import PlanStepIcon from "../../../../Icons/plan-shield.svg?react";
-import SensorsStepIcon from "../../../../Icons/sensors.svg?react";
+import CameraStepIcon from "../assets/icons/camera.svg?react";
+import ProtectionStepIcon from "../assets/icons/extra-protection.svg?react";
+import PlanStepIcon from "../assets/icons/plan-shield.svg?react";
+import SensorsStepIcon from "../assets/icons/sensors.svg?react";
 
 const stepIcons: Record<StepId, ComponentType<SVGProps<SVGSVGElement>>> = {
   cameras: CameraStepIcon,
@@ -146,6 +146,7 @@ export function BundleBuilderScreen() {
           onIncrement={(productId, variantId) =>
             builder.updateQuantity(productId, 1, variantId)
           }
+          onSave={builder.saveCurrentConfiguration}
         />
       </div>
     </main>

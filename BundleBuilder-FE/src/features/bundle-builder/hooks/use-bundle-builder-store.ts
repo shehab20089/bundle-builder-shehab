@@ -12,6 +12,7 @@ import type {
   SelectionState,
   StepId,
 } from "../types/bundle-builder";
+import { loadSavedConfiguration, saveConfiguration } from "../utils/storage";
 
 const productById = new Map(
   bundleProducts.map((product) => [product.id, product]),
@@ -28,19 +29,23 @@ type BundleBuilderStore = {
     variantId?: string,
   ) => void;
   goToNextStep: (stepId: StepId) => void;
+  saveCurrentConfiguration: () => boolean;
 };
 
-export function createInitialSelectionState() {
+export function createInitialSelectionState(savedSelections?: SelectionState) {
   return bundleProducts.reduce<SelectionState>((state, product) => {
     const defaultSelection = getDefaultSelection(product);
     const initialSelection = initialSelections[product.id];
+    const savedSelection = savedSelections?.[product.id];
 
     state[product.id] = {
       ...defaultSelection,
       ...initialSelection,
+      ...savedSelection,
       quantities: {
         ...defaultSelection.quantities,
         ...initialSelection?.quantities,
+        ...savedSelection?.quantities,
       },
     };
 
@@ -69,9 +74,11 @@ export function getProductTotal(selection: ProductSelection) {
   );
 }
 
-export const useBundleBuilderStore = create<BundleBuilderStore>((set) => ({
-  openStep: "cameras",
-  selections: createInitialSelectionState(),
+const savedConfiguration = loadSavedConfiguration();
+
+export const useBundleBuilderStore = create<BundleBuilderStore>((set, get) => ({
+  openStep: savedConfiguration?.openStep ?? "cameras",
+  selections: createInitialSelectionState(savedConfiguration?.selections),
   setOpenStep: (openStep) => set({ openStep }),
   selectVariant: (productId, variantId) => {
     set((current) => {
@@ -130,5 +137,10 @@ export const useBundleBuilderStore = create<BundleBuilderStore>((set) => ({
     if (nextStep) {
       set({ openStep: nextStep.id });
     }
+  },
+  saveCurrentConfiguration: () => {
+    const { openStep, selections } = get();
+
+    return saveConfiguration({ openStep, selections });
   },
 }));

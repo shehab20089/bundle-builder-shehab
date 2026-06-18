@@ -5,22 +5,22 @@ import type {
   SelectionState,
 } from "../types/bundle-builder";
 
-import cam1BlackThumbnail from "../../../../Images/cam1-black.png";
-import cam1GreyThumbnail from "../../../../Images/cam1-grey.png";
-import cam1WhiteThumbnail from "../../../../Images/cam1-white.png";
-import cam1Image from "../../../../Images/cam1.png";
-import cam2BlackThumbnail from "../../../../Images/cam2-black.png";
-import cam2WhiteThumbnail from "../../../../Images/cam2-white.png";
-import cam2Image from "../../../../Images/cam2.png";
-import cam3BlackThumbnail from "../../../../Images/cam3-black.png";
-import cam3WhiteThumbnail from "../../../../Images/cam3-white.png";
-import cam3Image from "../../../../Images/cam3.png";
-import cam4Image from "../../../../Images/cam4.png";
-import cam5BlackThumbnail from "../../../../Images/cam5-black.png";
-import cam5Image from "../../../../Images/cam5.png";
-import microSdImage from "../../../../Images/microSd1.png";
-import senseImage from "../../../../Images/sense1.png";
-import senseHubImage from "../../../../Images/Wyse1.png";
+import cam1BlackThumbnail from "../assets/images/cam1-black.png";
+import cam1GreyThumbnail from "../assets/images/cam1-grey.png";
+import cam1WhiteThumbnail from "../assets/images/cam1-white.png";
+import cam1Image from "../assets/images/cam1.png";
+import cam2BlackThumbnail from "../assets/images/cam2-black.png";
+import cam2WhiteThumbnail from "../assets/images/cam2-white.png";
+import cam2Image from "../assets/images/cam2.png";
+import cam3BlackThumbnail from "../assets/images/cam3-black.png";
+import cam3WhiteThumbnail from "../assets/images/cam3-white.png";
+import cam3Image from "../assets/images/cam3.png";
+import cam4Image from "../assets/images/cam4.png";
+import cam5BlackThumbnail from "../assets/images/cam5-black.png";
+import cam5Image from "../assets/images/cam5.png";
+import microSdImage from "../assets/images/microSd1.png";
+import senseImage from "../assets/images/sense1.png";
+import senseHubImage from "../assets/images/Wyse1.png";
 
 const camV4Variants = [
   {
@@ -168,7 +168,7 @@ export const bundleSteps: BundleStep[] = [
         stepId: "plan",
         title: "Cam Unlimited",
         description: "Unlimited event recording for every camera in your home.",
-        price: 10,
+        price: 9.99,
         compareAt: 12.99,
         visual: "plan",
         supportsQuantity: false,

@@ -4,12 +4,13 @@ import { cn } from "@/lib/utils";
 
 import { fulfillmentItems } from "../apis/bundle-builder-data";
 import type { ReviewLineItem, StepId } from "../types/bundle-builder";
+import { formatCurrency, formatMonthlyPrice } from "../utils/formatters";
 import { ProductVisual } from "./ProductVisual";
 import { QuantityStepper } from "./QuantityStepper";
 
-import ShippingTruckIcon from "../../../../Icons/shipping-truck.svg?react";
-import WyzeShieldIcon from "../../../../Icons/wyze-shield.svg?react";
-import satisfactionBadgeImage from "../../../../Images/satisfactionBadge.png";
+import ShippingTruckIcon from "../assets/icons/shipping-truck.svg?react";
+import WyzeShieldIcon from "../assets/icons/wyze-shield.svg?react";
+import satisfactionBadgeImage from "../assets/images/satisfactionBadge.png";
 
 type ReviewPanelProps = {
   lineItems: ReviewLineItem[];
@@ -17,12 +18,8 @@ type ReviewPanelProps = {
   compareTotal: number;
   onDecrement: (productId: string, variantId: string) => void;
   onIncrement: (productId: string, variantId: string) => void;
+  onSave: () => void;
 };
-
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
 
 const reviewGroups: Array<{ id: StepId; label: string }> = [
   { id: "cameras", label: "CAMERAS" },
@@ -39,6 +36,7 @@ export function ReviewPanel({
   compareTotal,
   onDecrement,
   onIncrement,
+  onSave,
 }: ReviewPanelProps) {
   const savings = Math.max(0, compareTotal - subtotal);
   const plan = lineItems.find((item) => item.stepId === "plan");
@@ -120,10 +118,10 @@ export function ReviewPanel({
                 </div>
                 <div className="flex shrink-0 flex-col items-end text-sm leading-none">
                   <span className="text-bundle-muted line-through">
-                    $12.99/mo
+                    {plan.compareAt ? formatMonthlyPrice(plan.compareAt) : ""}
                   </span>
                   <span className="text-bundle-brand font-semibold">
-                    $9.99/mo
+                    {formatMonthlyPrice(plan.price)}
                   </span>
                 </div>
               </div>
@@ -148,7 +146,7 @@ export function ReviewPanel({
                 </div>
                 <div className="flex shrink-0 flex-col items-end text-sm leading-none">
                   <span className="text-bundle-muted line-through">
-                    {currencyFormatter.format(item.compareAt)}
+                    {formatCurrency(item.compareAt)}
                   </span>
                   <span className="text-bundle-brand font-semibold">FREE</span>
                 </div>
@@ -168,30 +166,31 @@ export function ReviewPanel({
             </div>
             <div className="mt-2 flex items-baseline justify-end gap-1.5 whitespace-nowrap">
               <span className="text-bundle-price-muted text-2xl leading-none line-through">
-                {currencyFormatter.format(compareTotal)}
+                {formatCurrency(compareTotal)}
               </span>
               <span className="text-bundle-brand text-[30px] leading-none font-bold tracking-[-0.04em]">
-                {currencyFormatter.format(subtotal)}
+                {formatCurrency(subtotal)}
               </span>
             </div>
           </div>
         </div>
 
         <p className="text-bundle-success mt-2 text-center text-xs leading-3 font-bold tracking-[-0.01em]">
-          Congrats! You&apos;re saving {currencyFormatter.format(savings)} on
-          your security bundle!
+          Congrats! You&apos;re saving {formatCurrency(savings)} on your
+          security bundle!
         </p>
 
         <Button className="bg-bundle-brand hover:bg-bundle-brand-hover mt-2 h-[47px] w-full rounded-[4px] text-[17px] font-bold text-white">
           Checkout
         </Button>
 
-        <a
-          href="#save-system"
-          className="text-bundle-muted mt-2 block text-center text-sm leading-4 italic underline underline-offset-2"
+        <button
+          type="button"
+          className="text-bundle-muted mx-auto mt-2 block cursor-pointer border-0 bg-transparent p-0 text-center text-sm leading-4 italic underline underline-offset-2"
+          onClick={onSave}
         >
           Save my system for later
-        </a>
+        </button>
       </div>
     </aside>
   );
@@ -228,11 +227,11 @@ function ReviewLine({ item, onDecrement, onIncrement }: ReviewLineProps) {
       </span>
       <div className="min-w-0">
         <p className="text-bundle-obsidian text-sm">{item.title}</p>
-        {/* {item.variantLabel ? (
-          <p className="text-[10px] font-medium text-slate-400">
+        {item.variantLabel ? (
+          <p className="text-bundle-muted text-[10px] leading-none">
             {item.variantLabel}
           </p>
-        ) : null} */}
+        ) : null}
       </div>
       <QuantityStepper
         compact
@@ -245,11 +244,11 @@ function ReviewLine({ item, onDecrement, onIncrement }: ReviewLineProps) {
       <div className="min-w-14 text-right text-sm leading-tight">
         {item.compareAt && item.compareAt > item.price ? (
           <div className="text-bundle-price-muted line-through">
-            {currencyFormatter.format(item.compareAt)}
+            {formatCurrency(item.compareAt)}
           </div>
         ) : null}
         <div className="text-bundle-brand font-semibold">
-          {item.price === 0 ? "FREE" : currencyFormatter.format(item.price)}
+          {item.price === 0 ? "FREE" : formatCurrency(item.price)}
         </div>
       </div>
     </div>
