@@ -70,7 +70,7 @@ export function BundleBuilderScreen() {
                   <AccordionTrigger className="items-center rounded-none border-x-0 border-t border-b-0 border-[#1F1F1F] px-[15px] py-5 text-left hover:no-underline [&_[data-slot=accordion-trigger-icon]]:!ml-1 [&_[data-slot=accordion-trigger-icon]]:text-[var(--bundle-purple)]">
                     <div className="flex min-w-0 items-center gap-2">
                       <StepIcon className="size-5 shrink-0 text-slate-300" />
-                      <span className="truncate text-xl font-black tracking-tight text-slate-950">
+                      <span className="truncate text-[22px] tracking-tight text-[#0B0D10]">
                         {step.title}
                       </span>
                     </div>
