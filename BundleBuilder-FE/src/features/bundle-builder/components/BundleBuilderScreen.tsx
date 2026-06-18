@@ -42,7 +42,7 @@ export function BundleBuilderScreen() {
         } as CSSProperties
       }
     >
-      <div className="mx-auto grid w-full max-w-325 gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,768px)_390px] lg:items-start lg:gap-7 lg:px-8 lg:py-12">
+      <div className="mx-auto grid w-full max-w-325 gap-6 px-0 py-8 sm:px-0 lg:grid-cols-[minmax(0,768px)_390px] lg:items-start lg:gap-7 lg:px-8 lg:py-12">
         <h1 className="text-center text-3xl font-black tracking-tight sm:text-4xl lg:sr-only">
           Let&apos;s get started!
         </h1>
