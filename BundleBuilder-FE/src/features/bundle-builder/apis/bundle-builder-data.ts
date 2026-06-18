@@ -1,9 +1,12 @@
 import type {
   BundleProduct,
   BundleStep,
+  FulfillmentItem,
   ProductSelection,
+  ProductVariant,
   SelectionState,
 } from "../types/bundle-builder";
+import bundleBuilderData from "./bundle-builder-data.json";
 
 import cam1BlackThumbnail from "../assets/images/cam1-black.png";
 import cam1GreyThumbnail from "../assets/images/cam1-grey.png";
@@ -22,253 +25,63 @@ import microSdImage from "../assets/images/microSd1.png";
 import senseImage from "../assets/images/sense1.png";
 import senseHubImage from "../assets/images/Wyse1.png";
 
-const camV4Variants = [
-  {
-    id: "white",
-    label: "White",
-    swatch: "bg-white",
-    imageSrc: cam1WhiteThumbnail,
-  },
-  {
-    id: "gray",
-    label: "Grey",
-    swatch: "bg-slate-300",
-    imageSrc: cam1GreyThumbnail,
-  },
-  {
-    id: "black",
-    label: "Black",
-    swatch: "bg-zinc-950",
-    imageSrc: cam1BlackThumbnail,
-  },
-];
+const productImages = {
+  cam1: cam1Image,
+  cam1Black: cam1BlackThumbnail,
+  cam1Grey: cam1GreyThumbnail,
+  cam1White: cam1WhiteThumbnail,
+  cam2: cam2Image,
+  cam2Black: cam2BlackThumbnail,
+  cam2White: cam2WhiteThumbnail,
+  cam3: cam3Image,
+  cam3Black: cam3BlackThumbnail,
+  cam3White: cam3WhiteThumbnail,
+  cam4: cam4Image,
+  cam5: cam5Image,
+  cam5Black: cam5BlackThumbnail,
+  microSd: microSdImage,
+  sense: senseImage,
+  senseHub: senseHubImage,
+} satisfies Record<string, string>;
 
-const camPanVariants = [
-  {
-    id: "white",
-    label: "White",
-    swatch: "bg-white",
-    imageSrc: cam2WhiteThumbnail,
-  },
-  {
-    id: "black",
-    label: "Black",
-    swatch: "bg-zinc-950",
-    imageSrc: cam2BlackThumbnail,
-  },
-];
+type ProductImageKey = keyof typeof productImages;
 
-const floodlightVariants = [
-  {
-    id: "white",
-    label: "White",
-    swatch: "bg-white",
-    imageSrc: cam3WhiteThumbnail,
-  },
-  {
-    id: "black",
-    label: "Black",
-    swatch: "bg-zinc-950",
-    imageSrc: cam3BlackThumbnail,
-  },
-];
-
-const batteryCamVariants = [
-  {
-    id: "white",
-    label: "White",
-    swatch: "bg-white",
-    imageSrc: cam5Image,
-  },
-  {
-    id: "black",
-    label: "Black",
-    swatch: "bg-zinc-950",
-    imageSrc: cam5BlackThumbnail,
-  },
-];
-
-export const bundleSteps: BundleStep[] = [
-  {
-    id: "cameras",
-    stepNumber: 1,
-    title: "Choose your cameras",
-    nextLabel: "Next: Choose your plan",
-    products: [
-      {
-        id: "cam-v4",
-        stepId: "cameras",
-        title: "Wyze Cam v4",
-        description: "The clearest Wyze Cam ever made.",
-        learnMore: "Learn More",
-        badge: "Save 22%",
-        price: 27.98,
-        compareAt: 35.98,
-        visual: "cam-v4",
-        imageSrc: cam1Image,
-        variants: camV4Variants,
-      },
-      {
-        id: "cam-pan-v3",
-        stepId: "cameras",
-        title: "Wyze Cam Pan v3",
-        description: "360 pan and 180 tilt security camera.",
-        learnMore: "Learn More",
-        badge: "Save 13%",
-        price: 34.98,
-        compareAt: 39.98,
-        visual: "cam-pan",
-        imageSrc: cam2Image,
-        variants: camPanVariants,
-      },
-      {
-        id: "floodlight-v2",
-        stepId: "cameras",
-        title: "Wyze Cam Floodlight v2",
-        description: "2K floodlight camera with a 160 degree view.",
-        learnMore: "Learn More",
-        badge: "Save 11%",
-        price: 89.98,
-        compareAt: 99.98,
-        visual: "floodlight",
-        imageSrc: cam3Image,
-        variants: floodlightVariants,
-      },
-      {
-        id: "duo-cam-doorbell",
-        stepId: "cameras",
-        title: "Wyze Duo Cam Doorbell",
-        description: "Two cameras. Two views. One front-door view.",
-        learnMore: "Learn More",
-        price: 69.98,
-        visual: "doorbell",
-        imageSrc: cam4Image,
-      },
-      {
-        id: "battery-cam-pro",
-        stepId: "cameras",
-        title: "Wyze Battery Cam Pro",
-        description: "Wire-free protection with 2.5K video.",
-        learnMore: "Learn More",
-        price: 95.98,
-        visual: "battery-cam",
-        imageSrc: cam5Image,
-        variants: batteryCamVariants,
-      },
-    ],
-  },
-  {
-    id: "plan",
-    stepNumber: 2,
-    title: "Choose your plan",
-    nextLabel: "Next: Choose your sensors",
-    products: [
-      {
-        id: "cam-unlimited",
-        stepId: "plan",
-        title: "Cam Unlimited",
-        description: "Unlimited event recording for every camera in your home.",
-        price: 9.99,
-        compareAt: 12.99,
-        visual: "plan",
-        supportsQuantity: false,
-      },
-    ],
-  },
-  {
-    id: "sensors",
-    stepNumber: 3,
-    title: "Choose your sensors",
-    nextLabel: "Next: Add extra protection",
-    products: [
-      {
-        id: "motion-sensor",
-        stepId: "sensors",
-        title: "Wyze Sense Motion Sensor",
-        description: "Detects movement in halls, rooms, and entryways.",
-        price: 9.99,
-        compareAt: 13.33,
-        visual: "motion-sensor",
-        imageSrc: senseImage,
-      },
-      {
-        id: "sense-hub",
-        stepId: "sensors",
-        title: "Wyze Sense Hub (Required)",
-        description: "Connects sensors and keeps your system online.",
-        price: 0,
-        compareAt: 29.92,
-        visual: "hub",
-        imageSrc: senseHubImage,
-      },
-    ],
-  },
-  {
-    id: "protection",
-    stepNumber: 4,
-    title: "Add extra protection",
-    products: [
-      {
-        id: "microsd-card",
-        stepId: "protection",
-        title: "Wyze MicroSD Card (256GB)",
-        description: "Local recording storage for continuous backup.",
-        price: 24.99,
-        compareAt: 34.98,
-        visual: "microsd",
-        imageSrc: microSdImage,
-      },
-    ],
-  },
-];
-
-export const initialSelections: SelectionState = {
-  "cam-v4": {
-    activeVariantId: "black",
-    quantities: {
-      black: 1,
-    },
-  },
-  "cam-pan-v3": {
-    activeVariantId: "black",
-    quantities: {
-      black: 2,
-    },
-  },
-  "cam-unlimited": {
-    activeVariantId: "default",
-    quantities: {
-      default: 1,
-    },
-  },
-  "motion-sensor": {
-    activeVariantId: "default",
-    quantities: {
-      default: 3,
-    },
-  },
-  "sense-hub": {
-    activeVariantId: "default",
-    quantities: {
-      default: 1,
-    },
-  },
-  "microsd-card": {
-    activeVariantId: "default",
-    quantities: {
-      default: 2,
-    },
-  },
+type RawProductVariant = Omit<ProductVariant, "imageSrc"> & {
+  imageKey?: ProductImageKey;
 };
 
-export const fulfillmentItems = [
-  {
-    id: "shipping",
-    label: "Fast Shipping",
-    compareAt: 5.99,
-    price: 0,
-  },
-];
+type RawBundleProduct = Omit<BundleProduct, "imageSrc" | "variants"> & {
+  imageKey?: ProductImageKey;
+  variants?: RawProductVariant[];
+};
+
+type RawBundleStep = Omit<BundleStep, "products"> & {
+  products: RawBundleProduct[];
+};
+
+type BundleBuilderJson = {
+  steps: RawBundleStep[];
+  initialSelections: SelectionState;
+  fulfillmentItems: FulfillmentItem[];
+};
+
+const rawData = bundleBuilderData as BundleBuilderJson;
+
+export const bundleSteps: BundleStep[] = rawData.steps.map((step) => ({
+  ...step,
+  products: step.products.map((product) => ({
+    ...product,
+    imageSrc: resolveImage(product.imageKey),
+    variants: product.variants?.map((variant) => ({
+      ...variant,
+      imageSrc: resolveImage(variant.imageKey),
+    })),
+  })),
+}));
+
+export const initialSelections: SelectionState = rawData.initialSelections;
+
+export const fulfillmentItems: FulfillmentItem[] = rawData.fulfillmentItems;
 
 export const bundleProducts: BundleProduct[] = bundleSteps.flatMap(
   (step) => step.products,
@@ -279,4 +92,12 @@ export function getDefaultSelection(product: BundleProduct): ProductSelection {
     activeVariantId: product.variants?.[0]?.id ?? "default",
     quantities: {},
   };
+}
+
+function resolveImage(imageKey: ProductImageKey | undefined) {
+  if (!imageKey) {
+    return undefined;
+  }
+
+  return productImages[imageKey];
 }

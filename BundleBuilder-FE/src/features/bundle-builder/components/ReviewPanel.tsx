@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
@@ -18,7 +20,7 @@ type ReviewPanelProps = {
   compareTotal: number;
   onDecrement: (productId: string, variantId: string) => void;
   onIncrement: (productId: string, variantId: string) => void;
-  onSave: () => void;
+  onSave: () => boolean;
 };
 
 const reviewGroups: Array<{ id: StepId; label: string }> = [
@@ -38,8 +40,23 @@ export function ReviewPanel({
   onIncrement,
   onSave,
 }: ReviewPanelProps) {
+  const [actionMessage, setActionMessage] = useState<string | null>(null);
   const savings = Math.max(0, compareTotal - subtotal);
   const plan = lineItems.find((item) => item.stepId === "plan");
+
+  function handleCheckout() {
+    setActionMessage("Checkout is a prototype placeholder.");
+  }
+
+  function handleSave() {
+    const saved = onSave();
+
+    setActionMessage(
+      saved
+        ? "Your system has been saved for later."
+        : "We could not save your system. Please try again.",
+    );
+  }
 
   return (
     <aside
@@ -180,17 +197,30 @@ export function ReviewPanel({
           security bundle!
         </p>
 
-        <Button className="bg-bundle-brand hover:bg-bundle-brand-hover mt-2 h-[47px] w-full rounded-[4px] text-[17px] font-bold text-white">
+        <Button
+          type="button"
+          className="bg-bundle-brand hover:bg-bundle-brand-hover mt-2 h-[47px] w-full rounded-[4px] text-[17px] font-bold text-white"
+          onClick={handleCheckout}
+        >
           Checkout
         </Button>
 
         <button
           type="button"
           className="text-bundle-muted mx-auto mt-2 block cursor-pointer border-0 bg-transparent p-0 text-center text-sm leading-4 italic underline underline-offset-2"
-          onClick={onSave}
+          onClick={handleSave}
         >
           Save my system for later
         </button>
+
+        {actionMessage ? (
+          <p
+            className="text-bundle-muted mt-1 text-center text-xs"
+            aria-live="polite"
+          >
+            {actionMessage}
+          </p>
+        ) : null}
       </div>
     </aside>
   );

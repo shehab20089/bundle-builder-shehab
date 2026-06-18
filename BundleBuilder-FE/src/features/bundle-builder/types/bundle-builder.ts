@@ -48,6 +48,13 @@ export type ProductSelection = {
 
 export type SelectionState = Record<string, ProductSelection>;
 
+export type FulfillmentItem = {
+  id: string;
+  label: string;
+  price: number;
+  compareAt: number;
+};
+
 export type ReviewLineItem = {
   key: string;
   productId: string;
