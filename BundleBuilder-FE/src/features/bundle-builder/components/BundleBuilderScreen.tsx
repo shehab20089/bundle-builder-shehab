@@ -62,7 +62,7 @@ export function BundleBuilderScreen() {
                 <AccordionItem
                   key={step.id}
                   value={step.id}
-                  className="overflow-hidden border-b border-[var(--bundle-border)] transition-colors data-[state=open]:rounded-lg data-[state=open]:border-b-transparent data-[state=open]:bg-[var(--bundle-panel)] data-[state=open]:shadow-[inset_0_0_0_1px_rgba(113,91,246,0.03)]"
+                  className="overflow-hidden  transition-colors data-[state=open]:rounded-lg   data-[state=open]:bg-[var(--bundle-panel)] border-none data-[state=open]:shadow-[inset_0_0_0_1px_rgba(113,91,246,0.03)]"
                 >
                   <div className="flex h-[33px] items-center border-b border-[#484848] px-3 text-[12px] font-medium uppercase leading-none tracking-[1.6px] text-[#484848]">
                     Step {step.stepNumber} of {bundleSteps.length}
