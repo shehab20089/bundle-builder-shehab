@@ -124,7 +124,7 @@ export function BundleBuilderScreen() {
                       </div>
 
                       {step.nextLabel ? (
-                        <div className="mt-4 flex justify-center">
+                        <div className="mt-[15px] flex justify-center">
                           <Button
                             type="button"
                             variant="outline"
