@@ -18,6 +18,9 @@ import cam3Image from "../../../../Images/cam3.png";
 import cam4Image from "../../../../Images/cam4.png";
 import cam5BlackThumbnail from "../../../../Images/cam5-black.png";
 import cam5Image from "../../../../Images/cam5.png";
+import microSdImage from "../../../../Images/microSd1.png";
+import senseImage from "../../../../Images/sense1.png";
+import senseHubImage from "../../../../Images/Wyse1.png";
 
 const camV4Variants = [
   {
@@ -185,6 +188,7 @@ export const bundleSteps: BundleStep[] = [
         price: 9.99,
         compareAt: 13.33,
         visual: "motion-sensor",
+        imageSrc: senseImage,
       },
       {
         id: "sense-hub",
@@ -194,6 +198,7 @@ export const bundleSteps: BundleStep[] = [
         price: 0,
         compareAt: 0,
         visual: "hub",
+        imageSrc: senseHubImage,
       },
     ],
   },
@@ -210,6 +215,7 @@ export const bundleSteps: BundleStep[] = [
         price: 24.99,
         compareAt: 34.98,
         visual: "microsd",
+        imageSrc: microSdImage,
       },
     ],
   },
