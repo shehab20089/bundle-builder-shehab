@@ -29,6 +29,7 @@ export type BundleProduct = {
   learnMore?: string;
   visual: ProductVisualKind;
   imageSrc?: string;
+  supportsQuantity?: boolean;
   variants?: ProductVariant[];
 };
 

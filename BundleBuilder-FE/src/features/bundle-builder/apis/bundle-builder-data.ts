@@ -171,6 +171,7 @@ export const bundleSteps: BundleStep[] = [
         price: 10,
         compareAt: 12.99,
         visual: "plan",
+        supportsQuantity: false,
       },
     ],
   },

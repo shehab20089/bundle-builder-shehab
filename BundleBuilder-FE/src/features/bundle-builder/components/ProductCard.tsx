@@ -37,6 +37,7 @@ export function ProductCard({
     (variant) => variant.id === activeVariantId,
   );
   const productImageSrc = product.imageSrc ?? activeVariant?.imageSrc;
+  const supportsQuantity = product.supportsQuantity !== false;
 
   return (
     <article
@@ -119,13 +120,20 @@ export function ProductCard({
           </div>
         ) : null}
 
-        <div className="mt-auto flex items-end justify-between gap-2">
-          <QuantityStepper
-            value={activeQuantity}
-            label={product.title}
-            onDecrement={onDecrement}
-            onIncrement={onIncrement}
-          />
+        <div
+          className={cn(
+            "mt-auto flex items-end gap-2",
+            supportsQuantity ? "justify-between" : "justify-end",
+          )}
+        >
+          {supportsQuantity ? (
+            <QuantityStepper
+              value={activeQuantity}
+              label={product.title}
+              onDecrement={onDecrement}
+              onIncrement={onIncrement}
+            />
+          ) : null}
 
           <div className="text-right leading-none">
             {product.compareAt && product.compareAt > product.price ? (

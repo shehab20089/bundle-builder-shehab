@@ -190,7 +190,7 @@ export function ReviewPanel({
           your security bundle!
         </p>
 
-        <Button className="mt-2 h-[47px] w-full rounded-[4px] bg-[var(--bundle-purple)] text-[20px] font-bold text-white hover:bg-[var(--bundle-purple-dark)]">
+        <Button className="mt-2 h-[47px] w-full rounded-[4px] bg-[var(--bundle-purple)] text-[17px] font-bold text-white hover:bg-[var(--bundle-purple-dark)]">
           Checkout
         </Button>
 

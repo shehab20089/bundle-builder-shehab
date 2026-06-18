@@ -92,9 +92,7 @@ export function BundleBuilderScreen() {
                       <div
                         className={cn(
                           "grid gap-2.5",
-                          step.id === "cameras"
-                            ? "sm:grid-cols-2"
-                            : "sm:grid-cols-2 lg:grid-cols-1",
+                          step.id === "cameras" && "sm:grid-cols-2",
                         )}
                       >
                         {step.products.map((product, productIndex) => (
