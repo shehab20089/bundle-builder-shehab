@@ -33,6 +33,10 @@ export function ProductCard({
   onIncrement,
 }: ProductCardProps) {
   const isSelected = totalQuantity > 0;
+  const activeVariant = product.variants?.find(
+    (variant) => variant.id === activeVariantId,
+  );
+  const productImageSrc = product.imageSrc ?? activeVariant?.imageSrc;
 
   return (
     <article
@@ -51,7 +55,12 @@ export function ProductCard({
       ) : null}
 
       <div className="flex min-h-[112px] items-center justify-center pt-5">
-        <ProductVisual kind={product.visual} className="h-[82px] w-[82px]" />
+        <ProductVisual
+          kind={product.visual}
+          imageSrc={productImageSrc}
+          alt={product.title}
+          className="h-[82px] w-[82px]"
+        />
       </div>
 
       <div className="flex min-w-0 flex-col gap-2.5">
@@ -81,19 +90,28 @@ export function ProductCard({
                   variant="outline"
                   size="xs"
                   className={cn(
-                    "h-[26px] gap-1 rounded-[2px] border-slate-200 bg-white px-2 text-[9.5px] font-bold text-slate-700 shadow-none hover:bg-slate-50",
+                    "h-[30px] gap-1 rounded-[2px] border-slate-200 bg-white px-1.5 pr-2 text-[9.5px] font-bold text-slate-700 shadow-none hover:bg-slate-50",
                     selected &&
                       "border-[#0AA288] bg-[#1DF0BB0A] text-slate-900 hover:bg-teal-50",
                   )}
                   aria-pressed={selected}
                   onClick={() => onSelectVariant(variant.id)}
                 >
-                  <span
-                    className={cn(
-                      "size-2 rounded-full border border-slate-200",
-                      variant.swatch,
-                    )}
-                  />
+                  {variant.imageSrc ? (
+                    <img
+                      src={variant.imageSrc}
+                      alt=""
+                      className="size-[26px] shrink-0 object-contain"
+                      draggable={false}
+                    />
+                  ) : (
+                    <span
+                      className={cn(
+                        "size-2 rounded-full border border-slate-200",
+                        variant.swatch,
+                      )}
+                    />
+                  )}
                   {variant.label}
                 </Button>
               );

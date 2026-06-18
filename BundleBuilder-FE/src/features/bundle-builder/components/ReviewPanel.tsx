@@ -9,6 +9,8 @@ import type { ReviewLineItem, StepId } from "../types/bundle-builder";
 import { ProductVisual } from "./ProductVisual";
 import { QuantityStepper } from "./QuantityStepper";
 
+import satisfactionBadgeImage from "../../../../Images/satisfactionBadge.png";
+
 type ReviewPanelProps = {
   lineItems: ReviewLineItem[];
   subtotal: number;
@@ -204,29 +206,12 @@ export function ReviewPanel({
 
 function GuaranteeBadge() {
   return (
-    <div
-      className="relative flex size-[72px] shrink-0 rotate-[-12deg] items-center justify-center bg-[var(--bundle-purple)] text-center text-white shadow-lg shadow-violet-200 [clip-path:polygon(50%_0%,60%_13%,76%_8%,83%_24%,100%_31%,91%_49%,100%_67%,83%_76%,76%_92%,60%_87%,50%_100%,40%_87%,24%_92%,17%_76%,0_67%,9%_49%,0_31%,17%_24%,24%_8%,40%_13%)]"
-      aria-label="100% Wyze satisfaction guarantee"
-    >
-      <span className="absolute top-1.5 left-1/2 w-16 -translate-x-1/2 text-[5px] leading-none font-bold tracking-[-0.02em]">
-        Try worry-free for 30 days
-      </span>
-      <span className="absolute top-1/2 right-1 w-12 -translate-y-1/2 rotate-90 text-[5px] leading-none font-bold tracking-[-0.02em]">
-        Try worry-free
-      </span>
-      <span className="absolute bottom-1.5 left-1/2 w-16 -translate-x-1/2 rotate-180 text-[5px] leading-none font-bold tracking-[-0.02em]">
-        Try worry-free for 30 days
-      </span>
-      <span className="absolute top-1/2 left-1 w-12 -translate-y-1/2 -rotate-90 text-[5px] leading-none font-bold tracking-[-0.02em]">
-        Try worry-free
-      </span>
-      <span className="relative flex flex-col items-center justify-center text-[10px] leading-[0.95] font-bold tracking-[-0.03em]">
-        <span className="text-[18px] leading-none">100%</span>
-        <span>Wyze</span>
-        <span>satisfaction</span>
-        <span>guarantee</span>
-      </span>
-    </div>
+    <img
+      src={satisfactionBadgeImage}
+      alt="100% Wyze satisfaction guarantee"
+      className="size-[72px] shrink-0 object-contain"
+      draggable={false}
+    />
   );
 }
 
@@ -240,7 +225,13 @@ function ReviewLine({ item, onDecrement, onIncrement }: ReviewLineProps) {
   return (
     <div className="grid grid-cols-[2rem_1fr_auto_auto] items-center gap-2 text-sm">
       <span className="flex size-8 items-center justify-center rounded-md bg-white">
-        <ProductVisual kind={item.visual} compact />
+        <ProductVisual
+          kind={item.visual}
+          imageSrc={item.imageSrc}
+          alt={item.title}
+          compact
+          className="size-7"
+        />
       </span>
       <div className="min-w-0">
         <p className="text-sm text-[#0B0D10]">{item.title}</p>

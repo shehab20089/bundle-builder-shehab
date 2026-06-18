@@ -79,6 +79,7 @@ export function useBundleBuilder() {
             price: product.price,
             compareAt: product.compareAt,
             visual: product.visual,
+            imageSrc: product.imageSrc ?? variant?.imageSrc,
           };
         });
     });

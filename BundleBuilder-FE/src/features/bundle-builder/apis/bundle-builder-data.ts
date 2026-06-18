@@ -5,10 +5,84 @@ import type {
   SelectionState,
 } from "../types/bundle-builder";
 
-const colorVariants = [
-  { id: "white", label: "White", swatch: "bg-white" },
-  { id: "gray", label: "Gray", swatch: "bg-slate-300" },
-  { id: "black", label: "Black", swatch: "bg-zinc-950" },
+import cam1BlackThumbnail from "../../../../Images/cam1-black.png";
+import cam1GreyThumbnail from "../../../../Images/cam1-grey.png";
+import cam1WhiteThumbnail from "../../../../Images/cam1-white.png";
+import cam1Image from "../../../../Images/cam1.png";
+import cam2BlackThumbnail from "../../../../Images/cam2-black.png";
+import cam2WhiteThumbnail from "../../../../Images/cam2-white.png";
+import cam2Image from "../../../../Images/cam2.png";
+import cam3BlackThumbnail from "../../../../Images/cam3-black.png";
+import cam3WhiteThumbnail from "../../../../Images/cam3-white.png";
+import cam3Image from "../../../../Images/cam3.png";
+import cam4Image from "../../../../Images/cam4.png";
+import cam5BlackThumbnail from "../../../../Images/cam5-black.png";
+import cam5Image from "../../../../Images/cam5.png";
+
+const camV4Variants = [
+  {
+    id: "white",
+    label: "White",
+    swatch: "bg-white",
+    imageSrc: cam1WhiteThumbnail,
+  },
+  {
+    id: "gray",
+    label: "Grey",
+    swatch: "bg-slate-300",
+    imageSrc: cam1GreyThumbnail,
+  },
+  {
+    id: "black",
+    label: "Black",
+    swatch: "bg-zinc-950",
+    imageSrc: cam1BlackThumbnail,
+  },
+];
+
+const camPanVariants = [
+  {
+    id: "white",
+    label: "White",
+    swatch: "bg-white",
+    imageSrc: cam2WhiteThumbnail,
+  },
+  {
+    id: "black",
+    label: "Black",
+    swatch: "bg-zinc-950",
+    imageSrc: cam2BlackThumbnail,
+  },
+];
+
+const floodlightVariants = [
+  {
+    id: "white",
+    label: "White",
+    swatch: "bg-white",
+    imageSrc: cam3WhiteThumbnail,
+  },
+  {
+    id: "black",
+    label: "Black",
+    swatch: "bg-zinc-950",
+    imageSrc: cam3BlackThumbnail,
+  },
+];
+
+const batteryCamVariants = [
+  {
+    id: "white",
+    label: "White",
+    swatch: "bg-white",
+    imageSrc: cam5Image,
+  },
+  {
+    id: "black",
+    label: "Black",
+    swatch: "bg-zinc-950",
+    imageSrc: cam5BlackThumbnail,
+  },
 ];
 
 export const bundleSteps: BundleStep[] = [
@@ -28,7 +102,8 @@ export const bundleSteps: BundleStep[] = [
         price: 27.98,
         compareAt: 35.98,
         visual: "cam-v4",
-        variants: colorVariants,
+        imageSrc: cam1Image,
+        variants: camV4Variants,
       },
       {
         id: "cam-pan-v3",
@@ -40,7 +115,8 @@ export const bundleSteps: BundleStep[] = [
         price: 34.98,
         compareAt: 39.98,
         visual: "cam-pan",
-        variants: colorVariants,
+        imageSrc: cam2Image,
+        variants: camPanVariants,
       },
       {
         id: "floodlight-v2",
@@ -52,10 +128,8 @@ export const bundleSteps: BundleStep[] = [
         price: 89.98,
         compareAt: 99.98,
         visual: "floodlight",
-        variants: [
-          { id: "white", label: "White", swatch: "bg-white" },
-          { id: "black", label: "Black", swatch: "bg-zinc-950" },
-        ],
+        imageSrc: cam3Image,
+        variants: floodlightVariants,
       },
       {
         id: "duo-cam-doorbell",
@@ -65,6 +139,7 @@ export const bundleSteps: BundleStep[] = [
         learnMore: "Learn More",
         price: 69.98,
         visual: "doorbell",
+        imageSrc: cam4Image,
       },
       {
         id: "battery-cam-pro",
@@ -74,10 +149,8 @@ export const bundleSteps: BundleStep[] = [
         learnMore: "Learn More",
         price: 95.98,
         visual: "battery-cam",
-        variants: [
-          { id: "white", label: "White", swatch: "bg-white" },
-          { id: "black", label: "Black", swatch: "bg-zinc-950" },
-        ],
+        imageSrc: cam5Image,
+        variants: batteryCamVariants,
       },
     ],
   },

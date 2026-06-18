@@ -15,6 +15,7 @@ export type ProductVariant = {
   id: string;
   label: string;
   swatch: string;
+  imageSrc?: string;
 };
 
 export type BundleProduct = {
@@ -27,6 +28,7 @@ export type BundleProduct = {
   badge?: string;
   learnMore?: string;
   visual: ProductVisualKind;
+  imageSrc?: string;
   variants?: ProductVariant[];
 };
 
@@ -56,4 +58,5 @@ export type ReviewLineItem = {
   price: number;
   compareAt?: number;
   visual: ProductVisualKind;
+  imageSrc?: string;
 };
