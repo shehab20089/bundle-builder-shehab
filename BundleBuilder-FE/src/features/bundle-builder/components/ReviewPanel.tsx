@@ -30,7 +30,7 @@ const reviewGroups: Array<{ id: StepId; label: string }> = [
   { id: "protection", label: "ACCESSORIES" },
 ];
 
-const reviewSeparator = "border-b border-[#CBD5E1]";
+const reviewSeparator = "border-b border-bundle-divider";
 const financingMonthlyLabel = "$19.19/mo";
 
 export function ReviewPanel({
@@ -45,26 +45,26 @@ export function ReviewPanel({
 
   return (
     <aside
-      className="rounded-lg bg-[var(--bundle-panel)] p-5 text-slate-950 lg:sticky lg:top-6"
+      className="bg-bundle-panel text-bundle-obsidian rounded-lg p-5 lg:sticky lg:top-6"
       aria-labelledby="review-heading"
     >
       <div className="flex flex-col">
-        <p className="-ms-1.25 mb-6.25 text-xs tracking-[0.18em] text-[#484848] uppercase">
+        <p className="text-bundle-muted -ms-1.25 mb-6.25 text-xs tracking-[0.18em] uppercase">
           Review
         </p>
         <h2
           id="review-heading"
-          className="text-[22px] tracking-tight text-[#1F1F1F]"
+          className="text-bundle-heading text-[22px] tracking-tight"
         >
           Your security system
         </h2>
-        <p className="max-w-87.5 text-sm leading-snug text-[#1F1F1F]/75">
+        <p className="text-bundle-heading/75 max-w-87.5 text-sm leading-snug">
           Review your personalized protection system designed to keep what
           matters most safe.
         </p>
       </div>
 
-      <Separator className="mt-2.5 mb-3.75 bg-blue-100" />
+      <Separator className="bg-bundle-divider mt-2.5 mb-3.75" />
 
       <div className="flex flex-col gap-[15px]">
         {reviewGroups.map((group) => {
@@ -79,7 +79,7 @@ export function ReviewPanel({
               key={group.id}
               className={cn("flex flex-col gap-2 pb-4", reviewSeparator)}
             >
-              <h3 className="text-xs text-[#A8B2BD]">{group.label}</h3>
+              <h3 className="text-bundle-section text-xs">{group.label}</h3>
               <div className="flex flex-col gap-2">
                 {items.map((item) => (
                   <ReviewLine
@@ -100,7 +100,7 @@ export function ReviewPanel({
 
         {plan || fulfillmentItems.length > 0 ? (
           <section className="flex flex-col gap-2">
-            <h3 className="text-xs leading-none text-[#A8B2BD]">PLAN</h3>
+            <h3 className="text-bundle-section text-xs leading-none">PLAN</h3>
             {plan ? (
               <div
                 className={cn(
@@ -113,22 +113,16 @@ export function ReviewPanel({
                     className="h-6 w-5 shrink-0"
                     aria-hidden="true"
                   />
-                  <p
-                    className="min-w-0 truncate text-[16px] leading-none tracking-[-0.002em]"
-                    style={{
-                      fontFamily: "'Gilroy-Bold', var(--font-gilroy)",
-                      fontWeight: 400,
-                    }}
-                  >
-                    <span className="text-[#0B0D10]">Cam </span>
-                    <span className="text-[var(--bundle-purple)]">
-                      Unlimited
-                    </span>
+                  <p className="font-gilroy-bold min-w-0 truncate text-[16px] leading-none font-normal tracking-[-0.002em]">
+                    <span className="text-bundle-obsidian">Cam </span>
+                    <span className="text-bundle-brand">Unlimited</span>
                   </p>
                 </div>
                 <div className="flex shrink-0 flex-col items-end text-sm leading-none">
-                  <span className="text-[#484848] line-through">$12.99/mo</span>
-                  <span className="font-semibold text-[var(--bundle-purple)]">
+                  <span className="text-bundle-muted line-through">
+                    $12.99/mo
+                  </span>
+                  <span className="text-bundle-brand font-semibold">
                     $9.99/mo
                   </span>
                 </div>
@@ -143,22 +137,20 @@ export function ReviewPanel({
                     `pb-3 ${reviewSeparator}`,
                 )}
               >
-                <div className="flex items-center gap-2.5 text-[#0B0D10]">
+                <div className="text-bundle-obsidian flex items-center gap-2.5">
                   <ShippingTruckIcon
                     className="size-[41px] shrink-0"
                     aria-hidden="true"
                   />
-                  <span className="text-[14px] leading-4 tracking-[0.005em] text-[#0B0D10]">
+                  <span className="text-bundle-obsidian text-[14px] leading-4 tracking-[0.005em]">
                     {item.label}
                   </span>
                 </div>
                 <div className="flex shrink-0 flex-col items-end text-sm leading-none">
-                  <span className="text-[#484848] line-through">
+                  <span className="text-bundle-muted line-through">
                     {currencyFormatter.format(item.compareAt)}
                   </span>
-                  <span className="font-semibold text-[var(--bundle-purple)]">
-                    FREE
-                  </span>
+                  <span className="text-bundle-brand font-semibold">FREE</span>
                 </div>
               </div>
             ))}
@@ -171,32 +163,32 @@ export function ReviewPanel({
           <GuaranteeBadge />
 
           <div className="flex min-w-0 flex-col items-end pt-2">
-            <div className="rounded-[3px] bg-[var(--bundle-purple)] px-2 py-[5px] text-xs leading-none tracking-[-0.01em] whitespace-nowrap text-white">
+            <div className="bg-bundle-brand rounded-[3px] px-2 py-[5px] text-xs leading-none tracking-[-0.01em] whitespace-nowrap text-white">
               as low as {financingMonthlyLabel}
             </div>
             <div className="mt-2 flex items-baseline justify-end gap-1.5 whitespace-nowrap">
-              <span className="text-2xl leading-none text-[#707780] line-through">
+              <span className="text-bundle-price-muted text-2xl leading-none line-through">
                 {currencyFormatter.format(compareTotal)}
               </span>
-              <span className="text-[30px] leading-none font-bold tracking-[-0.04em] text-[var(--bundle-purple)]">
+              <span className="text-bundle-brand text-[30px] leading-none font-bold tracking-[-0.04em]">
                 {currencyFormatter.format(subtotal)}
               </span>
             </div>
           </div>
         </div>
 
-        <p className="mt-2 text-center text-xs leading-3 font-bold tracking-[-0.01em] text-[#0AA288]">
+        <p className="text-bundle-success mt-2 text-center text-xs leading-3 font-bold tracking-[-0.01em]">
           Congrats! You&apos;re saving {currencyFormatter.format(savings)} on
           your security bundle!
         </p>
 
-        <Button className="mt-2 h-[47px] w-full rounded-[4px] bg-[var(--bundle-purple)] text-[17px] font-bold text-white hover:bg-[var(--bundle-purple-dark)]">
+        <Button className="bg-bundle-brand hover:bg-bundle-brand-hover mt-2 h-[47px] w-full rounded-[4px] text-[17px] font-bold text-white">
           Checkout
         </Button>
 
         <a
           href="#save-system"
-          className="mt-2 block text-center text-sm leading-4 text-[#484848] italic underline underline-offset-2"
+          className="text-bundle-muted mt-2 block text-center text-sm leading-4 italic underline underline-offset-2"
         >
           Save my system for later
         </a>
@@ -235,7 +227,7 @@ function ReviewLine({ item, onDecrement, onIncrement }: ReviewLineProps) {
         />
       </span>
       <div className="min-w-0">
-        <p className="text-sm text-[#0B0D10]">{item.title}</p>
+        <p className="text-bundle-obsidian text-sm">{item.title}</p>
         {/* {item.variantLabel ? (
           <p className="text-[10px] font-medium text-slate-400">
             {item.variantLabel}
@@ -252,11 +244,11 @@ function ReviewLine({ item, onDecrement, onIncrement }: ReviewLineProps) {
       />
       <div className="min-w-14 text-right text-sm leading-tight">
         {item.compareAt && item.compareAt > item.price ? (
-          <div className="text-slate-400 line-through">
+          <div className="text-bundle-price-muted line-through">
             {currencyFormatter.format(item.compareAt)}
           </div>
         ) : null}
-        <div className="font-semibold text-[var(--bundle-purple)]">
+        <div className="text-bundle-brand font-semibold">
           {item.price === 0 ? "FREE" : currencyFormatter.format(item.price)}
         </div>
       </div>

@@ -1,4 +1,4 @@
-import type { ComponentType, CSSProperties, SVGProps } from "react";
+import type { ComponentType, SVGProps } from "react";
 
 import {
   Accordion,
@@ -31,17 +31,7 @@ export function BundleBuilderScreen() {
   const builder = useBundleBuilder();
 
   return (
-    <main
-      className="min-h-screen bg-white text-slate-950"
-      style={
-        {
-          "--bundle-panel": "#eef6ff",
-          "--bundle-purple": "#4E2FD2",
-          "--bundle-purple-dark": "#4528c9",
-          "--bundle-border": "#d7dce7",
-        } as CSSProperties
-      }
-    >
+    <main className="bg-background text-bundle-obsidian min-h-screen">
       <div className="mx-auto grid w-full max-w-325 gap-6 px-0 py-8 sm:px-0 lg:grid-cols-[minmax(0,768px)_390px] lg:items-start lg:gap-7 lg:px-8 lg:py-12">
         <h1 className="text-center text-3xl font-black tracking-tight sm:text-4xl lg:sr-only">
           Let&apos;s get started!
@@ -66,21 +56,21 @@ export function BundleBuilderScreen() {
                 <AccordionItem
                   key={step.id}
                   value={step.id}
-                  className="group overflow-hidden border-[#1F1F1F] transition-colors data-[state=closed]:border-b data-[state=open]:rounded-lg data-[state=open]:border-none data-[state=open]:bg-[var(--bundle-panel)] data-[state=open]:shadow-[inset_0_0_0_1px_rgba(113,91,246,0.03)]"
+                  className="group border-bundle-accordion-line data-[state=open]:bg-bundle-panel data-[state=open]:shadow-bundle-open overflow-hidden transition-colors data-[state=closed]:border-b data-[state=open]:rounded-lg data-[state=open]:border-none"
                 >
-                  <div className="flex h-[33px] items-center px-[15px] text-[10px] leading-none font-medium tracking-[1.6px] text-[#484848] uppercase group-data-[state=open]:text-[12px]">
+                  <div className="text-bundle-muted flex h-[33px] items-center px-[15px] text-[10px] leading-none font-medium tracking-[1.6px] uppercase group-data-[state=open]:text-[12px]">
                     Step {step.stepNumber} of {bundleSteps.length}
                   </div>
-                  <AccordionTrigger className="items-center rounded-none border-x-0 border-t border-b-0 border-[#1F1F1F] px-[15px] py-5 text-left hover:no-underline [&_[data-slot=accordion-trigger-icon]]:!ml-1 [&_[data-slot=accordion-trigger-icon]]:text-[var(--bundle-purple)]">
+                  <AccordionTrigger className="border-bundle-accordion-line [&_[data-slot=accordion-trigger-icon]]:text-bundle-brand items-center rounded-none border-x-0 border-t border-b-0 px-[15px] py-5 text-left hover:no-underline [&_[data-slot=accordion-trigger-icon]]:!ml-1">
                     <div className="flex min-w-0 items-center gap-2">
                       <StepIcon className="size-5 shrink-0 text-slate-300" />
-                      <span className="truncate text-[22px] font-normal tracking-tight text-[#0B0D10]">
+                      <span className="text-bundle-obsidian truncate text-[22px] font-normal tracking-tight">
                         {step.title}
                       </span>
                     </div>
                     <span
                       className={cn(
-                        "mr-1 ml-auto text-[11px] font-bold text-[var(--bundle-purple)]",
+                        "text-bundle-brand mr-1 ml-auto text-[11px] font-bold",
                         selectedCount === 0 && "text-slate-400",
                       )}
                     >
@@ -131,7 +121,7 @@ export function BundleBuilderScreen() {
                           <Button
                             type="button"
                             variant="outline"
-                            className="h-8 rounded-md border-[var(--bundle-purple)] bg-white px-5 text-xs font-black text-[var(--bundle-purple)] shadow-none hover:bg-violet-50"
+                            className="border-bundle-brand text-bundle-brand h-8 rounded-md bg-white px-5 text-xs font-black shadow-none hover:bg-violet-50"
                             onClick={() => builder.goToNextStep(step.id)}
                           >
                             {step.nextLabel}

@@ -95,6 +95,27 @@
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: var(--font-gilroy);
+  --font-gilroy-bold: "Gilroy-Bold", var(--font-gilroy);
+  --color-bundle-panel: var(--bundle-panel);
+  --color-bundle-brand: var(--bundle-brand);
+  --color-bundle-brand-hover: var(--bundle-brand-hover);
+  --color-bundle-brand-soft: var(--bundle-brand-soft);
+  --color-bundle-accordion-line: var(--bundle-accordion-line);
+  --color-bundle-divider: var(--bundle-divider);
+  --color-bundle-heading: var(--bundle-heading);
+  --color-bundle-obsidian: var(--bundle-obsidian);
+  --color-bundle-muted: var(--bundle-muted);
+  --color-bundle-section: var(--bundle-section);
+  --color-bundle-price: var(--bundle-price);
+  --color-bundle-price-muted: var(--bundle-price-muted);
+  --color-bundle-control: var(--bundle-control);
+  --color-bundle-control-icon: var(--bundle-control-icon);
+  --color-bundle-danger: var(--bundle-danger);
+  --color-bundle-success: var(--bundle-success);
+  --color-bundle-success-soft: var(--bundle-success-soft);
+  --color-bundle-link: var(--bundle-link);
+  --shadow-bundle-card: 0 8px 18px rgb(39 52 86 / 5%);
+  --shadow-bundle-open: inset 0 0 0 1px rgb(113 91 246 / 3%);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -137,6 +158,24 @@
 
 :root {
   --font-gilroy: "Gilroy", "Gilroy-Regular", sans-serif;
+  --bundle-panel: #eef6ff;
+  --bundle-brand: #4e2fd2;
+  --bundle-brand-hover: #4528c9;
+  --bundle-brand-soft: #715bf6;
+  --bundle-accordion-line: #1f1f1f;
+  --bundle-divider: #cbd5e1;
+  --bundle-heading: #1f1f1f;
+  --bundle-obsidian: #0b0d10;
+  --bundle-muted: #484848;
+  --bundle-section: #a8b2bd;
+  --bundle-price: #575757;
+  --bundle-price-muted: #707780;
+  --bundle-control: #f0f4f7;
+  --bundle-control-icon: #525963;
+  --bundle-danger: #d8392b;
+  --bundle-success: #0aa288;
+  --bundle-success-soft: #1df0bb0a;
+  --bundle-link: #0000ee;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);

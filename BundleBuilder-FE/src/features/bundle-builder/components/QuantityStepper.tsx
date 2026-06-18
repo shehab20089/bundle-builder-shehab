@@ -35,10 +35,10 @@ export function QuantityStepper({
         variant="outline"
         size="icon-xs"
         className={cn(
-          "size-[18px] rounded text-[#525963] shadow-none [&_svg:not([class*='size-'])]:size-2",
+          "text-bundle-control-icon size-[18px] rounded shadow-none [&_svg:not([class*='size-'])]:size-2",
           isReviewSurface
             ? "border-none bg-white hover:bg-white"
-            : "bg-[#F0F4F7] hover:bg-slate-50",
+            : "bg-bundle-control hover:bg-slate-50",
         )}
         aria-label={`Decrease ${label}`}
         disabled={value === 0}
@@ -56,10 +56,10 @@ export function QuantityStepper({
         variant="outline"
         size="icon-xs"
         className={cn(
-          "size-5 rounded-[4px] border-none text-[#525963] shadow-none [&_svg:not([class*='size-'])]:size-2",
+          "text-bundle-control-icon size-5 rounded-[4px] border-none shadow-none [&_svg:not([class*='size-'])]:size-2",
           isReviewSurface
             ? "bg-white hover:bg-white"
-            : "bg-[#F0F4F7] hover:bg-slate-50",
+            : "bg-bundle-control hover:bg-slate-50",
         )}
         aria-label={`Increase ${label}`}
         onClick={onIncrement}
