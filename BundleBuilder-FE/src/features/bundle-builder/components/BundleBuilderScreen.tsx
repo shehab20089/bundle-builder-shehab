@@ -62,9 +62,9 @@ export function BundleBuilderScreen() {
                 <AccordionItem
                   key={step.id}
                   value={step.id}
-                  className="overflow-hidden border-[#1F1F1F] transition-colors data-[state=closed]:border-b data-[state=open]:rounded-lg data-[state=open]:border-none data-[state=open]:bg-[var(--bundle-panel)] data-[state=open]:shadow-[inset_0_0_0_1px_rgba(113,91,246,0.03)]"
+                  className="group overflow-hidden border-[#1F1F1F] transition-colors data-[state=closed]:border-b data-[state=open]:rounded-lg data-[state=open]:border-none data-[state=open]:bg-[var(--bundle-panel)] data-[state=open]:shadow-[inset_0_0_0_1px_rgba(113,91,246,0.03)]"
                 >
-                  <div className="flex h-[33px] items-center px-[15px] text-[12px] leading-none font-medium tracking-[1.6px] text-[#484848] uppercase">
+                  <div className="flex h-[33px] items-center px-[15px] text-[10px] leading-none font-medium tracking-[1.6px] text-[#484848] uppercase group-data-[state=open]:text-[12px]">
                     Step {step.stepNumber} of {bundleSteps.length}
                   </div>
                   <AccordionTrigger className="items-center rounded-none border-x-0 border-t border-b-0 border-[#1F1F1F] px-[15px] py-5 text-left hover:no-underline [&_[data-slot=accordion-trigger-icon]]:!ml-1 [&_[data-slot=accordion-trigger-icon]]:text-[var(--bundle-purple)]">
