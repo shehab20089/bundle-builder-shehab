@@ -2,6 +2,7 @@ import { CheckCircle2Icon, TruckIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 import { fulfillmentItems } from "../apis/bundle-builder-data";
 import type { ReviewLineItem, StepId } from "../types/bundle-builder";
@@ -27,6 +28,8 @@ const reviewGroups: Array<{ id: StepId; label: string }> = [
   { id: "protection", label: "ACCESSORIES" },
 ];
 
+const reviewSeparator = "border-b border-[#CBD5E1]";
+
 export function ReviewPanel({
   lineItems,
   subtotal,
@@ -42,22 +45,25 @@ export function ReviewPanel({
       className="rounded-lg bg-[var(--bundle-panel)] p-5 text-slate-950 lg:sticky lg:top-6"
       aria-labelledby="review-heading"
     >
-      <div className="flex flex-col gap-1">
-        <p className="text-[10px] font-bold tracking-[0.18em] text-slate-400 uppercase">
+      <div className="flex flex-col">
+        <p className="-ms-1.25 mb-6.25 text-xs tracking-[0.18em] text-[#484848] uppercase">
           Review
         </p>
-        <h2 id="review-heading" className="text-xl font-black tracking-tight">
+        <h2
+          id="review-heading"
+          className="text-[22px] tracking-tight text-[#1F1F1F]"
+        >
           Your security system
         </h2>
-        <p className="max-w-[24rem] text-[11px] leading-snug text-slate-500">
+        <p className="max-w-87.5 text-sm leading-snug text-[#1F1F1F]/75">
           Review your personalized protection system designed to keep what
           matters most safe.
         </p>
       </div>
 
-      <Separator className="my-4 bg-blue-100" />
+      <Separator className="mt-2.5 mb-3.75 bg-blue-100" />
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-[15px]">
         {reviewGroups.map((group) => {
           const items = lineItems.filter((item) => item.stepId === group.id);
 
@@ -66,10 +72,11 @@ export function ReviewPanel({
           }
 
           return (
-            <section key={group.id} className="flex flex-col gap-2">
-              <h3 className="text-[10px] font-bold text-slate-400">
-                {group.label}
-              </h3>
+            <section
+              key={group.id}
+              className={cn("flex flex-col gap-2 pb-4", reviewSeparator)}
+            >
+              <h3 className="text-xs text-[#A8B2BD]">{group.label}</h3>
               <div className="flex flex-col gap-2">
                 {items.map((item) => (
                   <ReviewLine
@@ -88,53 +95,57 @@ export function ReviewPanel({
           );
         })}
 
-        {plan ? (
+        {plan || fulfillmentItems.length > 0 ? (
           <section className="flex flex-col gap-2">
-            <h3 className="text-[10px] font-bold text-slate-400">
-              HOME MONITORING PLAN
-            </h3>
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2 text-sm font-black text-[var(--bundle-purple)]">
-                <CheckCircle2Icon className="size-4 text-blue-300" />
-                {plan.title}
+            <h3 className="text-xs text-[#A8B2BD]">PLAN</h3>
+            {plan ? (
+              <div
+                className={cn(
+                  "flex items-center justify-between gap-3 pb-3",
+                  fulfillmentItems.length > 0 && reviewSeparator,
+                )}
+              >
+                <div className="flex items-center gap-2 text-sm text-[var(--bundle-purple)]">
+                  <CheckCircle2Icon className="size-4 text-blue-300" />
+                  {plan.title}
+                </div>
+                <div className="text-right text-[11px]">
+                  <span className="text-slate-400 line-through">
+                    $120.00/mo
+                  </span>{" "}
+                  <span className="text-[var(--bundle-purple)]">$99/mo</span>
+                </div>
               </div>
-              <div className="text-right text-[11px]">
-                <span className="text-slate-400 line-through">$120.00/mo</span>{" "}
-                <span className="font-black text-[var(--bundle-purple)]">
-                  $99/mo
-                </span>
+            ) : null}
+            {fulfillmentItems.map((item, index) => (
+              <div
+                key={item.id}
+                className={cn(
+                  "flex items-center justify-between gap-3 text-sm",
+                  index < fulfillmentItems.length - 1 &&
+                    `pb-3 ${reviewSeparator}`,
+                )}
+              >
+                <div className="flex items-center gap-2 text-slate-700">
+                  <span className="flex size-7 items-center justify-center rounded-md bg-white text-teal-400">
+                    <TruckIcon className="size-4" />
+                  </span>
+                  {item.label}
+                </div>
+                <div className="text-right text-[11px]">
+                  <span className="text-slate-400 line-through">
+                    {currencyFormatter.format(item.compareAt)}
+                  </span>{" "}
+                  <span className="text-[var(--bundle-purple)]">FREE</span>
+                </div>
               </div>
-            </div>
+            ))}
           </section>
         ) : null}
-
-        <section className="flex flex-col gap-2">
-          {fulfillmentItems.map((item) => (
-            <div
-              key={item.id}
-              className="flex items-center justify-between gap-3 text-sm"
-            >
-              <div className="flex items-center gap-2 font-bold text-slate-700">
-                <span className="flex size-7 items-center justify-center rounded-md bg-white text-teal-400">
-                  <TruckIcon className="size-4" />
-                </span>
-                {item.label}
-              </div>
-              <div className="text-right text-[11px]">
-                <span className="text-slate-400 line-through">
-                  {currencyFormatter.format(item.compareAt)}
-                </span>{" "}
-                <span className="font-black text-[var(--bundle-purple)]">
-                  FREE
-                </span>
-              </div>
-            </div>
-          ))}
-        </section>
       </div>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-[120px_1fr] sm:items-center lg:grid-cols-1">
-        <div className="flex size-24 rotate-[-10deg] items-center justify-center rounded-full bg-[var(--bundle-purple)] p-3 text-center text-[11px] leading-tight font-black text-white shadow-lg shadow-violet-200 [clip-path:polygon(50%_0%,61%_12%,78%_7%,84%_23%,100%_32%,91%_49%,100%_66%,84%_75%,78%_93%,61%_88%,50%_100%,39%_88%,22%_93%,16%_75%,0_66%,9%_49%,0_32%,16%_23%,22%_7%,39%_12%)]">
+        <div className="flex size-24 rotate-[-10deg] items-center justify-center rounded-full bg-[var(--bundle-purple)] p-3 text-center text-[11px] leading-tight text-white shadow-lg shadow-violet-200 [clip-path:polygon(50%_0%,61%_12%,78%_7%,84%_23%,100%_32%,91%_49%,100%_66%,84%_75%,78%_93%,61%_88%,50%_100%,39%_88%,22%_93%,16%_75%,0_66%,9%_49%,0_32%,16%_23%,22%_7%,39%_12%)]">
           100%
           <br />
           worry-free
@@ -147,7 +158,7 @@ export function ReviewPanel({
             <span className="mr-2 text-sm text-slate-400 line-through">
               {currencyFormatter.format(compareTotal)}
             </span>
-            <span className="text-2xl font-black text-[var(--bundle-purple)]">
+            <span className="text-2xl text-[var(--bundle-purple)]">
               {currencyFormatter.format(subtotal)}
             </span>
           </div>
@@ -155,7 +166,7 @@ export function ReviewPanel({
             Compared: You&apos;re saving {currencyFormatter.format(savings)} on
             your security bundle!
           </p>
-          <Button className="h-10 w-full rounded-md bg-[var(--bundle-purple)] text-sm font-black text-white hover:bg-[var(--bundle-purple-dark)]">
+          <Button className="h-10 w-full rounded-md bg-[var(--bundle-purple)] text-sm text-white hover:bg-[var(--bundle-purple-dark)]">
             Checkout
           </Button>
           <a
@@ -183,14 +194,12 @@ function ReviewLine({ item, onDecrement, onIncrement }: ReviewLineProps) {
         <ProductVisual kind={item.visual} compact />
       </span>
       <div className="min-w-0">
-        <p className="truncate text-[12px] font-bold text-slate-800">
-          {item.title}
-        </p>
-        {item.variantLabel ? (
+        <p className="text-sm text-[#0B0D10]">{item.title}</p>
+        {/* {item.variantLabel ? (
           <p className="text-[10px] font-medium text-slate-400">
             {item.variantLabel}
           </p>
-        ) : null}
+        ) : null} */}
       </div>
       <QuantityStepper
         compact
@@ -199,13 +208,13 @@ function ReviewLine({ item, onDecrement, onIncrement }: ReviewLineProps) {
         onDecrement={onDecrement}
         onIncrement={onIncrement}
       />
-      <div className="min-w-14 text-right text-[11px] leading-tight">
+      <div className="min-w-14 text-right text-sm leading-tight">
         {item.compareAt && item.compareAt > item.price ? (
           <div className="text-slate-400 line-through">
             {currencyFormatter.format(item.compareAt)}
           </div>
         ) : null}
-        <div className="font-black text-[var(--bundle-purple)]">
+        <div className="text-[var(--bundle-purple)]">
           {item.price === 0 ? "FREE" : currencyFormatter.format(item.price)}
         </div>
       </div>
