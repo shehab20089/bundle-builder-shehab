@@ -55,7 +55,7 @@ export function BundleBuilderScreen() {
                 builder.setOpenStep(value as StepId)
               }
             }}
-            className="overflow-hidden rounded-lg bg-white"
+            className="gap-[13px] bg-white"
           >
             {bundleSteps.map((step) => {
               const StepIcon = stepIcons[step.id]
@@ -65,7 +65,7 @@ export function BundleBuilderScreen() {
                 <AccordionItem
                   key={step.id}
                   value={step.id}
-                  className="border-b border-[var(--bundle-border)] last:border-b"
+                  className="overflow-hidden border-b border-[var(--bundle-border)] transition-colors data-[state=open]:rounded-lg data-[state=open]:border-b-transparent data-[state=open]:bg-[var(--bundle-panel)] data-[state=open]:shadow-[inset_0_0_0_1px_rgba(113,91,246,0.03)]"
                 >
                   <div className="px-3 pt-2 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
                     Step {step.stepNumber} of {bundleSteps.length}
@@ -87,7 +87,7 @@ export function BundleBuilderScreen() {
                     </span>
                   </AccordionTrigger>
                   <AccordionContent className="pb-3">
-                    <div className="rounded-b-lg bg-[var(--bundle-panel)] px-3 pb-3 pt-2">
+                    <div className="px-3 pb-3 pt-2">
                       <div
                         className={cn(
                           "grid gap-2.5",
