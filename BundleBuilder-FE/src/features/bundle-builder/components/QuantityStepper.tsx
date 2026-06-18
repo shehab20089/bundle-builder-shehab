@@ -30,12 +30,12 @@ export function QuantityStepper({
         type="button"
         variant="outline"
         size="icon-xs"
-        className="size-[18px] rounded border-slate-200 bg-white text-slate-400 shadow-none hover:bg-slate-50 [&_svg:not([class*='size-'])]:size-2.5"
+        className="size-[18px] rounded bg-[#F0F4F7] text-[#525963] shadow-none hover:bg-slate-50 [&_svg:not([class*='size-'])]:size-2"
         aria-label={`Decrease ${label}`}
         disabled={value === 0}
         onClick={onDecrement}
       >
-        <MinusIcon data-icon="inline-start" />
+        <MinusIcon data-icon="inline-start" strokeWidth={"3px"} />
       </Button>
       <span
         className={cn("min-w-3 text-center text-[10px]", compact && "min-w-2")}
@@ -46,11 +46,11 @@ export function QuantityStepper({
         type="button"
         variant="outline"
         size="icon-xs"
-        className="size-[18px] rounded border-slate-200 bg-white text-slate-500 shadow-none hover:bg-slate-50 [&_svg:not([class*='size-'])]:size-2.5"
+        className="size-5 rounded-[4px] border-none bg-[#F0F4F7] text-[#525963] shadow-none hover:bg-slate-50 [&_svg:not([class*='size-'])]:size-2"
         aria-label={`Increase ${label}`}
         onClick={onIncrement}
       >
-        <PlusIcon data-icon="inline-start" />
+        <PlusIcon data-icon="inline-start " strokeWidth={"3px"} />
       </Button>
     </div>
   );

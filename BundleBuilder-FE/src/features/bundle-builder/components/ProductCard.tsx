@@ -37,7 +37,7 @@ export function ProductCard({
   return (
     <article
       className={cn(
-        "relative grid min-h-[136px] grid-cols-[92px_minmax(0,1fr)] gap-2.5 rounded-lg border-2 bg-white p-2.5 shadow-[0_8px_18px_rgba(39,52,86,0.05)] transition",
+        "relative grid min-h-[136px] grid-cols-[92px_minmax(0,1fr)] gap-[19px] rounded-[10px] border-2 bg-white p-2.5 shadow-[0_8px_18px_rgba(39,52,86,0.05)] transition",
         isSelected
           ? "border-[var(--bundle-purple)]/70"
           : "border-transparent hover:border-violet-100",
@@ -45,7 +45,7 @@ export function ProductCard({
       )}
     >
       {product.badge ? (
-        <Badge className="absolute top-2.5 left-2.5 h-[18px] rounded-full bg-[var(--bundle-purple)] px-2 text-[9px] leading-none font-black text-white shadow-none">
+        <Badge className="absolute top-2.5 left-2.5 h-[19px] rounded-full bg-[var(--bundle-purple)] px-2 text-xs leading-none font-normal text-white shadow-none">
           {product.badge}
         </Badge>
       ) : null}
@@ -54,18 +54,15 @@ export function ProductCard({
         <ProductVisual kind={product.visual} className="h-[82px] w-[82px]" />
       </div>
 
-      <div className="flex min-w-0 flex-col gap-1.5">
-        <div className="flex min-h-[54px] flex-col gap-1">
-          <h3 className="truncate text-[12.5px] leading-tight font-black text-slate-950">
+      <div className="flex min-w-0 flex-col gap-2.5">
+        <div className="flex min-h-[54px] flex-col gap-2">
+          <h3 className="truncate text-base leading-tight text-[#1F1F1F]">
             {product.title}
           </h3>
-          <p className="line-clamp-2 max-w-[190px] text-[9.5px] leading-[1.22] font-medium text-slate-500">
+          <p className="text-xs leading-[1.22] font-normal text-[#1F1F1F]/75">
             {product.description}{" "}
             {product.learnMore ? (
-              <a
-                href="#bundle-details"
-                className="font-black text-[var(--bundle-purple)] underline underline-offset-2"
-              >
+              <a href="#bundle-details" className="text-[#0000EE] underline">
                 {product.learnMore}
               </a>
             ) : null}
@@ -84,9 +81,9 @@ export function ProductCard({
                   variant="outline"
                   size="xs"
                   className={cn(
-                    "h-[21px] gap-1 rounded border-slate-200 bg-white px-2 text-[9.5px] font-bold text-slate-700 shadow-none hover:bg-slate-50",
+                    "h-[26px] gap-1 rounded-[2px] border-slate-200 bg-white px-2 text-[9.5px] font-bold text-slate-700 shadow-none hover:bg-slate-50",
                     selected &&
-                      "border-teal-300 bg-teal-50 text-slate-900 hover:bg-teal-50",
+                      "border-[#0AA288] bg-[#1DF0BB0A] text-slate-900 hover:bg-teal-50",
                   )}
                   aria-pressed={selected}
                   onClick={() => onSelectVariant(variant.id)}
@@ -114,11 +111,11 @@ export function ProductCard({
 
           <div className="text-right leading-none">
             {product.compareAt && product.compareAt > product.price ? (
-              <div className="text-[11px] font-black text-red-400 line-through">
+              <div className="mb-[3px] text-base leading-none text-[#D8392B] line-through">
                 {currencyFormatter.format(product.compareAt)}
               </div>
             ) : null}
-            <div className="text-[12.5px] font-black text-slate-700">
+            <div className="text-base leading-none text-[#575757]">
               {product.price === 0
                 ? "FREE"
                 : currencyFormatter.format(product.price)}
