@@ -96,10 +96,16 @@ export function BundleBuilderScreen() {
                             : "sm:grid-cols-2 lg:grid-cols-1",
                         )}
                       >
-                        {step.products.map((product) => (
+                        {step.products.map((product, productIndex) => (
                           <ProductCard
                             key={product.id}
                             product={product}
+                            className={cn(
+                              step.id === "cameras" &&
+                                productIndex === step.products.length - 1 &&
+                                step.products.length % 2 === 1 &&
+                                "sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.3125rem)]",
+                            )}
                             activeVariantId={builder.getActiveVariantId(product)}
                             activeQuantity={builder.getActiveQuantity(product)}
                             totalQuantity={builder.getProductTotalQuantity(product)}

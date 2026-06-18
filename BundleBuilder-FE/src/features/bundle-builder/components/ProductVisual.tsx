@@ -17,7 +17,7 @@ export function ProductVisual({
 }: ProductVisualProps) {
   const frameClassName = cn(
     "relative flex items-center justify-center",
-    compact ? "size-9 [&>*]:scale-[0.45]" : "h-20 w-full",
+    compact ? "size-9 [&>*]:scale-[0.45]" : "h-20 w-full [&>*]:scale-[0.92]",
     className,
   )
 

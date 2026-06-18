@@ -30,21 +30,21 @@ export function QuantityStepper({
         type="button"
         variant="outline"
         size="icon-xs"
-        className="size-5 rounded-md border-slate-200 bg-white text-slate-400 shadow-none hover:bg-slate-50"
+        className="size-[18px] rounded border-slate-200 bg-white text-slate-400 shadow-none hover:bg-slate-50 [&_svg:not([class*='size-'])]:size-2.5"
         aria-label={`Decrease ${label}`}
         disabled={value === 0}
         onClick={onDecrement}
       >
         <MinusIcon data-icon="inline-start" />
       </Button>
-      <span className={cn("min-w-3 text-center", compact && "min-w-2")}>
+      <span className={cn("min-w-3 text-center text-[10px]", compact && "min-w-2")}>
         {value}
       </span>
       <Button
         type="button"
         variant="outline"
         size="icon-xs"
-        className="size-5 rounded-md border-slate-200 bg-white text-slate-500 shadow-none hover:bg-slate-50"
+        className="size-[18px] rounded border-slate-200 bg-white text-slate-500 shadow-none hover:bg-slate-50 [&_svg:not([class*='size-'])]:size-2.5"
         aria-label={`Increase ${label}`}
         onClick={onIncrement}
       >

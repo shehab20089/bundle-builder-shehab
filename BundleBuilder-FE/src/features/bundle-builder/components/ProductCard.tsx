@@ -11,6 +11,7 @@ type ProductCardProps = {
   activeVariantId: string
   activeQuantity: number
   totalQuantity: number
+  className?: string
   onSelectVariant: (variantId: string) => void
   onDecrement: () => void
   onIncrement: () => void
@@ -26,6 +27,7 @@ export function ProductCard({
   activeVariantId,
   activeQuantity,
   totalQuantity,
+  className,
   onSelectVariant,
   onDecrement,
   onIncrement,
@@ -35,31 +37,34 @@ export function ProductCard({
   return (
     <article
       className={cn(
-        "relative flex min-h-[190px] flex-col rounded-xl border bg-white p-3 shadow-sm transition",
+        "relative grid min-h-[136px] grid-cols-[92px_minmax(0,1fr)] gap-2.5 rounded-lg border-2 bg-white p-2.5 shadow-[0_8px_18px_rgba(39,52,86,0.05)] transition",
         isSelected
-          ? "border-[var(--bundle-purple)] shadow-[0_0_0_1px_var(--bundle-purple)]"
-          : "border-white hover:border-violet-200",
+          ? "border-[var(--bundle-purple)]"
+          : "border-transparent hover:border-violet-100",
+        className,
       )}
     >
       {product.badge ? (
-        <Badge className="absolute left-2 top-2 h-5 rounded-full bg-[var(--bundle-purple)] px-2 text-[10px] font-bold text-white shadow-none">
+        <Badge className="absolute left-2.5 top-2.5 h-[18px] rounded-full bg-[var(--bundle-purple)] px-2 text-[9px] font-black leading-none text-white shadow-none">
           {product.badge}
         </Badge>
       ) : null}
 
-      <ProductVisual kind={product.visual} />
+      <div className="flex min-h-[112px] items-center justify-center pt-5">
+        <ProductVisual kind={product.visual} className="h-[82px] w-[82px]" />
+      </div>
 
-      <div className="flex flex-1 flex-col gap-2">
-        <div className="flex flex-col gap-1">
-          <h3 className="text-[13px] font-bold leading-tight text-slate-950">
+      <div className="flex min-w-0 flex-col gap-1.5">
+        <div className="flex min-h-[54px] flex-col gap-1">
+          <h3 className="truncate text-[12.5px] font-black leading-tight text-slate-950">
             {product.title}
           </h3>
-          <p className="min-h-8 text-[10.5px] leading-snug text-slate-500">
+          <p className="line-clamp-2 max-w-[190px] text-[9.5px] font-medium leading-[1.22] text-slate-500">
             {product.description}{" "}
             {product.learnMore ? (
               <a
                 href="#bundle-details"
-                className="font-bold text-[var(--bundle-purple)] underline underline-offset-2"
+                className="font-black text-[var(--bundle-purple)] underline underline-offset-2"
               >
                 {product.learnMore}
               </a>
@@ -68,7 +73,7 @@ export function ProductCard({
         </div>
 
         {product.variants ? (
-          <div className="flex flex-wrap gap-1.5" aria-label="Color options">
+          <div className="flex flex-wrap gap-1" aria-label="Color options">
             {product.variants.map((variant) => {
               const selected = variant.id === activeVariantId
 
@@ -79,7 +84,7 @@ export function ProductCard({
                   variant="outline"
                   size="xs"
                   className={cn(
-                    "h-5 gap-1 rounded-md border-slate-200 bg-white px-2 text-[10px] font-semibold text-slate-700 shadow-none hover:bg-slate-50",
+                    "h-[21px] gap-1 rounded border-slate-200 bg-white px-2 text-[9.5px] font-bold text-slate-700 shadow-none hover:bg-slate-50",
                     selected &&
                       "border-teal-300 bg-teal-50 text-slate-900 hover:bg-teal-50",
                   )}
@@ -88,7 +93,7 @@ export function ProductCard({
                 >
                   <span
                     className={cn(
-                      "size-2.5 rounded-full border border-slate-200",
+                      "size-2 rounded-full border border-slate-200",
                       variant.swatch,
                     )}
                   />
@@ -99,7 +104,7 @@ export function ProductCard({
           </div>
         ) : null}
 
-        <div className="mt-auto flex items-end justify-between gap-3">
+        <div className="mt-auto flex items-end justify-between gap-2">
           <QuantityStepper
             value={activeQuantity}
             label={product.title}
@@ -109,12 +114,14 @@ export function ProductCard({
 
           <div className="text-right leading-none">
             {product.compareAt && product.compareAt > product.price ? (
-              <div className="text-xs font-bold text-red-400 line-through">
+              <div className="text-[11px] font-black text-red-400 line-through">
                 {currencyFormatter.format(product.compareAt)}
               </div>
             ) : null}
-            <div className="text-sm font-bold text-slate-700">
-              {product.price === 0 ? "FREE" : currencyFormatter.format(product.price)}
+            <div className="text-[12.5px] font-black text-slate-700">
+              {product.price === 0
+                ? "FREE"
+                : currencyFormatter.format(product.price)}
             </div>
           </div>
         </div>
