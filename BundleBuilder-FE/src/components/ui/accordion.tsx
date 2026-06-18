@@ -2,7 +2,8 @@ import * as React from "react";
 import { Accordion as AccordionPrimitive } from "radix-ui";
 
 import { cn } from "@/lib/utils";
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import CarrotDownIcon from "../../../Icons/carrot-down.svg?react";
+import CarrotUpIcon from "../../../Icons/carrot-up.svg?react";
 
 function Accordion({
   className,
@@ -40,18 +41,20 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-2.5 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3 disabled:pointer-events-none disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4",
+          "group/accordion-trigger focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:text-muted-foreground relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-2.5 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-3 disabled:pointer-events-none disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto",
           className,
         )}
         {...props}
       >
         {children}
-        <ChevronDownIcon
+        <CarrotDownIcon
           data-slot="accordion-trigger-icon"
+          aria-hidden="true"
           className="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
         />
-        <ChevronUpIcon
+        <CarrotUpIcon
           data-slot="accordion-trigger-icon"
+          aria-hidden="true"
           className="pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline"
         />
       </AccordionPrimitive.Trigger>
