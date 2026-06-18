@@ -1,45 +1,42 @@
-import {
-  CameraIcon,
-  GiftIcon,
-  RadioTowerIcon,
-  ShieldIcon,
-} from "lucide-react"
-import type { CSSProperties } from "react"
+import { CameraIcon, GiftIcon, RadioTowerIcon, ShieldIcon } from "lucide-react";
+import type { CSSProperties } from "react";
 
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-import { bundleSteps } from "../apis/bundle-builder-data"
-import { useBundleBuilder } from "../hooks/use-bundle-builder"
-import type { StepId } from "../types/bundle-builder"
-import { ProductCard } from "./ProductCard"
-import { ReviewPanel } from "./ReviewPanel"
+import { bundleSteps } from "../apis/bundle-builder-data";
+import { useBundleBuilder } from "../hooks/use-bundle-builder";
+import type { StepId } from "../types/bundle-builder";
+import { ProductCard } from "./ProductCard";
+import { ReviewPanel } from "./ReviewPanel";
 
 const stepIcons = {
   cameras: CameraIcon,
   plan: ShieldIcon,
   sensors: RadioTowerIcon,
   protection: GiftIcon,
-}
+};
 
 export function BundleBuilderScreen() {
-  const builder = useBundleBuilder()
+  const builder = useBundleBuilder();
 
   return (
     <main
       className="min-h-screen bg-white text-slate-950"
-      style={{
-        "--bundle-panel": "#eef6ff",
-        "--bundle-purple": "#5634e8",
-        "--bundle-purple-dark": "#4528c9",
-        "--bundle-border": "#d7dce7",
-      } as CSSProperties}
+      style={
+        {
+          "--bundle-panel": "#eef6ff",
+          "--bundle-purple": "#5634e8",
+          "--bundle-purple-dark": "#4528c9",
+          "--bundle-border": "#d7dce7",
+        } as CSSProperties
+      }
     >
       <div className="mx-auto grid w-full max-w-[1160px] gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,760px)_320px] lg:items-start lg:gap-7 lg:px-8 lg:py-12">
         <h1 className="text-center text-3xl font-black tracking-tight sm:text-4xl lg:sr-only">
@@ -52,14 +49,14 @@ export function BundleBuilderScreen() {
             value={builder.openStep}
             onValueChange={(value) => {
               if (value) {
-                builder.setOpenStep(value as StepId)
+                builder.setOpenStep(value as StepId);
               }
             }}
             className="gap-[13px] bg-white"
           >
             {bundleSteps.map((step) => {
-              const StepIcon = stepIcons[step.id]
-              const selectedCount = builder.selectedCountForStep(step.id)
+              const StepIcon = stepIcons[step.id];
+              const selectedCount = builder.selectedCountForStep(step.id);
 
               return (
                 <AccordionItem
@@ -67,7 +64,7 @@ export function BundleBuilderScreen() {
                   value={step.id}
                   className="overflow-hidden border-b border-[var(--bundle-border)] transition-colors data-[state=open]:rounded-lg data-[state=open]:border-b-transparent data-[state=open]:bg-[var(--bundle-panel)] data-[state=open]:shadow-[inset_0_0_0_1px_rgba(113,91,246,0.03)]"
                 >
-                  <div className="px-3 pt-2 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
+                  <div className="flex h-[33px] items-center border-b border-[#484848] px-3 text-[12px] font-medium uppercase leading-none tracking-[1.6px] text-[#484848]">
                     Step {step.stepNumber} of {bundleSteps.length}
                   </div>
                   <AccordionTrigger className="rounded-none px-3 py-2 text-left hover:no-underline [&_[data-slot=accordion-trigger-icon]]:text-[var(--bundle-purple)]">
@@ -106,9 +103,13 @@ export function BundleBuilderScreen() {
                                 step.products.length % 2 === 1 &&
                                 "sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.3125rem)]",
                             )}
-                            activeVariantId={builder.getActiveVariantId(product)}
+                            activeVariantId={builder.getActiveVariantId(
+                              product,
+                            )}
                             activeQuantity={builder.getActiveQuantity(product)}
-                            totalQuantity={builder.getProductTotalQuantity(product)}
+                            totalQuantity={builder.getProductTotalQuantity(
+                              product,
+                            )}
                             onSelectVariant={(variantId) =>
                               builder.selectVariant(product.id, variantId)
                             }
@@ -137,7 +138,7 @@ export function BundleBuilderScreen() {
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-              )
+              );
             })}
           </Accordion>
         </section>
@@ -155,5 +156,5 @@ export function BundleBuilderScreen() {
         />
       </div>
     </main>
-  )
+  );
 }
