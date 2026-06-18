@@ -1,4 +1,4 @@
-import { CheckCircle2Icon, TruckIcon } from "lucide-react";
+import { ShieldIcon, TruckIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -29,6 +29,7 @@ const reviewGroups: Array<{ id: StepId; label: string }> = [
 ];
 
 const reviewSeparator = "border-b border-[#CBD5E1]";
+const financingMonthlyLabel = "$19.19/mo";
 
 export function ReviewPanel({
   lineItems,
@@ -97,23 +98,37 @@ export function ReviewPanel({
 
         {plan || fulfillmentItems.length > 0 ? (
           <section className="flex flex-col gap-2">
-            <h3 className="text-xs text-[#A8B2BD]">PLAN</h3>
+            <h3 className="text-xs leading-none text-[#A8B2BD]">PLAN</h3>
             {plan ? (
               <div
                 className={cn(
-                  "flex items-center justify-between gap-3 pb-3",
+                  "flex items-start justify-between gap-3 pb-3",
                   fulfillmentItems.length > 0 && reviewSeparator,
                 )}
               >
-                <div className="flex items-center gap-2 text-sm text-[var(--bundle-purple)]">
-                  <CheckCircle2Icon className="size-4 text-blue-300" />
-                  {plan.title}
+                <div className="flex min-w-0 items-center gap-1.5">
+                  <ShieldIcon
+                    className="size-4 shrink-0 text-[#3C8DFF]"
+                    strokeWidth={1.5}
+                  />
+                  <p
+                    className="min-w-0 truncate text-[16px] leading-none tracking-[-0.002em]"
+                    style={{
+                      fontFamily: "'Gilroy-Bold', var(--font-gilroy)",
+                      fontWeight: 400,
+                    }}
+                  >
+                    <span className="text-[#0B0D10]">Cam </span>
+                    <span className="text-[var(--bundle-purple)]">
+                      Unlimited
+                    </span>
+                  </p>
                 </div>
-                <div className="text-right text-[11px]">
-                  <span className="text-slate-400 line-through">
-                    $120.00/mo
-                  </span>{" "}
-                  <span className="text-[var(--bundle-purple)]">$99/mo</span>
+                <div className="flex shrink-0 flex-col items-end text-[10px] leading-none">
+                  <span className="text-slate-400 line-through">$12.99/mo</span>
+                  <span className="font-semibold text-[var(--bundle-purple)]">
+                    $9.99/mo
+                  </span>
                 </div>
               </div>
             ) : null}
@@ -121,22 +136,26 @@ export function ReviewPanel({
               <div
                 key={item.id}
                 className={cn(
-                  "flex items-center justify-between gap-3 text-sm",
+                  "flex items-center justify-between gap-3 text-[12px]",
                   index < fulfillmentItems.length - 1 &&
                     `pb-3 ${reviewSeparator}`,
                 )}
               >
-                <div className="flex items-center gap-2 text-slate-700">
+                <div className="flex items-center gap-2 text-[#0B0D10]">
                   <span className="flex size-7 items-center justify-center rounded-md bg-white text-teal-400">
-                    <TruckIcon className="size-4" />
+                    <TruckIcon className="size-4" strokeWidth={2} />
                   </span>
-                  {item.label}
+                  <span className="text-[14px] leading-4 tracking-[0.005em] text-[#0B0D10]">
+                    {item.label}
+                  </span>
                 </div>
-                <div className="text-right text-[11px]">
+                <div className="flex shrink-0 flex-col items-end text-[10px] leading-none">
                   <span className="text-slate-400 line-through">
                     {currencyFormatter.format(item.compareAt)}
-                  </span>{" "}
-                  <span className="text-[var(--bundle-purple)]">FREE</span>
+                  </span>
+                  <span className="font-semibold text-[var(--bundle-purple)]">
+                    FREE
+                  </span>
                 </div>
               </div>
             ))}
@@ -144,40 +163,70 @@ export function ReviewPanel({
         ) : null}
       </div>
 
-      <div className="mt-5 grid gap-4 sm:grid-cols-[120px_1fr] sm:items-center lg:grid-cols-1">
-        <div className="flex size-24 rotate-[-10deg] items-center justify-center rounded-full bg-[var(--bundle-purple)] p-3 text-center text-[11px] leading-tight text-white shadow-lg shadow-violet-200 [clip-path:polygon(50%_0%,61%_12%,78%_7%,84%_23%,100%_32%,91%_49%,100%_66%,84%_75%,78%_93%,61%_88%,50%_100%,39%_88%,22%_93%,16%_75%,0_66%,9%_49%,0_32%,16%_23%,22%_7%,39%_12%)]">
-          100%
-          <br />
-          worry-free
-          <br />
-          guarantee
+      <div className="mt-3">
+        <div className="grid grid-cols-[84px_minmax(0,1fr)] items-start gap-2">
+          <GuaranteeBadge />
+
+          <div className="flex min-w-0 flex-col items-end pt-2">
+            <div className="rounded-[3px] bg-[var(--bundle-purple)] px-2 py-[5px] text-xs leading-none tracking-[-0.01em] whitespace-nowrap text-white">
+              as low as {financingMonthlyLabel}
+            </div>
+            <div className="mt-2 flex items-baseline justify-end gap-1.5 whitespace-nowrap">
+              <span className="text-2xl leading-none text-[#707780] line-through">
+                {currencyFormatter.format(compareTotal)}
+              </span>
+              <span className="text-[30px] leading-none font-bold tracking-[-0.04em] text-[var(--bundle-purple)]">
+                {currencyFormatter.format(subtotal)}
+              </span>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-3">
-          <div className="text-right">
-            <span className="mr-2 text-sm text-slate-400 line-through">
-              {currencyFormatter.format(compareTotal)}
-            </span>
-            <span className="text-2xl text-[var(--bundle-purple)]">
-              {currencyFormatter.format(subtotal)}
-            </span>
-          </div>
-          <p className="rounded bg-teal-50 py-1 text-center text-[11px] font-bold text-teal-500">
-            Compared: You&apos;re saving {currencyFormatter.format(savings)} on
-            your security bundle!
-          </p>
-          <Button className="h-10 w-full rounded-md bg-[var(--bundle-purple)] text-sm text-white hover:bg-[var(--bundle-purple-dark)]">
-            Checkout
-          </Button>
-          <a
-            href="#save-system"
-            className="text-center text-[11px] font-medium text-slate-500 underline underline-offset-2"
-          >
-            Save my system for later
-          </a>
-        </div>
+        <p className="mt-2 text-center text-xs leading-3 font-bold tracking-[-0.01em] text-[#0AA288]">
+          Congrats! You&apos;re saving {currencyFormatter.format(savings)} on
+          your security bundle!
+        </p>
+
+        <Button className="mt-2 h-[47px] w-full rounded-[4px] bg-[var(--bundle-purple)] text-[20px] font-bold text-white hover:bg-[var(--bundle-purple-dark)]">
+          Checkout
+        </Button>
+
+        <a
+          href="#save-system"
+          className="mt-2 block text-center text-sm leading-4 text-[#484848] italic underline underline-offset-2"
+        >
+          Save my system for later
+        </a>
       </div>
     </aside>
+  );
+}
+
+function GuaranteeBadge() {
+  return (
+    <div
+      className="relative flex size-[72px] shrink-0 rotate-[-12deg] items-center justify-center bg-[var(--bundle-purple)] text-center text-white shadow-lg shadow-violet-200 [clip-path:polygon(50%_0%,60%_13%,76%_8%,83%_24%,100%_31%,91%_49%,100%_67%,83%_76%,76%_92%,60%_87%,50%_100%,40%_87%,24%_92%,17%_76%,0_67%,9%_49%,0_31%,17%_24%,24%_8%,40%_13%)]"
+      aria-label="100% Wyze satisfaction guarantee"
+    >
+      <span className="absolute top-1.5 left-1/2 w-16 -translate-x-1/2 text-[5px] leading-none font-bold tracking-[-0.02em]">
+        Try worry-free for 30 days
+      </span>
+      <span className="absolute top-1/2 right-1 w-12 -translate-y-1/2 rotate-90 text-[5px] leading-none font-bold tracking-[-0.02em]">
+        Try worry-free
+      </span>
+      <span className="absolute bottom-1.5 left-1/2 w-16 -translate-x-1/2 rotate-180 text-[5px] leading-none font-bold tracking-[-0.02em]">
+        Try worry-free for 30 days
+      </span>
+      <span className="absolute top-1/2 left-1 w-12 -translate-y-1/2 -rotate-90 text-[5px] leading-none font-bold tracking-[-0.02em]">
+        Try worry-free
+      </span>
+      <span className="relative flex flex-col items-center justify-center text-[10px] leading-[0.95] font-bold tracking-[-0.03em]">
+        <span className="text-[18px] leading-none">100%</span>
+        <span>Wyze</span>
+        <span>satisfaction</span>
+        <span>guarantee</span>
+      </span>
+    </div>
   );
 }
 
