@@ -1,5 +1,4 @@
-import { CameraIcon, GiftIcon, RadioTowerIcon, ShieldIcon } from "lucide-react";
-import type { CSSProperties } from "react";
+import type { ComponentType, CSSProperties, SVGProps } from "react";
 
 import {
   Accordion,
@@ -16,11 +15,16 @@ import type { StepId } from "../types/bundle-builder";
 import { ProductCard } from "./ProductCard";
 import { ReviewPanel } from "./ReviewPanel";
 
-const stepIcons = {
-  cameras: CameraIcon,
-  plan: ShieldIcon,
-  sensors: RadioTowerIcon,
-  protection: GiftIcon,
+import CameraStepIcon from "../../../../Icons/camera.svg?react";
+import ProtectionStepIcon from "../../../../Icons/extra-protection.svg?react";
+import PlanStepIcon from "../../../../Icons/plan-shield.svg?react";
+import SensorsStepIcon from "../../../../Icons/sensors.svg?react";
+
+const stepIcons: Record<StepId, ComponentType<SVGProps<SVGSVGElement>>> = {
+  cameras: CameraStepIcon,
+  plan: PlanStepIcon,
+  sensors: SensorsStepIcon,
+  protection: ProtectionStepIcon,
 };
 
 export function BundleBuilderScreen() {
@@ -38,7 +42,7 @@ export function BundleBuilderScreen() {
         } as CSSProperties
       }
     >
-      <div className="mx-auto grid w-full max-w-[1300px] gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,768px)_390px] lg:items-start lg:gap-7 lg:px-8 lg:py-12">
+      <div className="mx-auto grid w-full max-w-325 gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,768px)_390px] lg:items-start lg:gap-7 lg:px-8 lg:py-12">
         <h1 className="text-center text-3xl font-black tracking-tight sm:text-4xl lg:sr-only">
           Let&apos;s get started!
         </h1>
@@ -70,7 +74,7 @@ export function BundleBuilderScreen() {
                   <AccordionTrigger className="items-center rounded-none border-x-0 border-t border-b-0 border-[#1F1F1F] px-[15px] py-5 text-left hover:no-underline [&_[data-slot=accordion-trigger-icon]]:!ml-1 [&_[data-slot=accordion-trigger-icon]]:text-[var(--bundle-purple)]">
                     <div className="flex min-w-0 items-center gap-2">
                       <StepIcon className="size-5 shrink-0 text-slate-300" />
-                      <span className="truncate text-[22px] tracking-tight text-[#0B0D10]">
+                      <span className="truncate text-[22px] font-normal tracking-tight text-[#0B0D10]">
                         {step.title}
                       </span>
                     </div>
