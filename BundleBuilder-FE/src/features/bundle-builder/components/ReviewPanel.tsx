@@ -126,8 +126,8 @@ export function ReviewPanel({
                     </span>
                   </p>
                 </div>
-                <div className="flex shrink-0 flex-col items-end text-[10px] leading-none">
-                  <span className="text-slate-400 line-through">$12.99/mo</span>
+                <div className="flex shrink-0 flex-col items-end text-sm leading-none">
+                  <span className="text-[#484848] line-through">$12.99/mo</span>
                   <span className="font-semibold text-[var(--bundle-purple)]">
                     $9.99/mo
                   </span>
@@ -152,8 +152,8 @@ export function ReviewPanel({
                     {item.label}
                   </span>
                 </div>
-                <div className="flex shrink-0 flex-col items-end text-[10px] leading-none">
-                  <span className="text-slate-400 line-through">
+                <div className="flex shrink-0 flex-col items-end text-sm leading-none">
+                  <span className="text-[#484848] line-through">
                     {currencyFormatter.format(item.compareAt)}
                   </span>
                   <span className="font-semibold text-[var(--bundle-purple)]">
