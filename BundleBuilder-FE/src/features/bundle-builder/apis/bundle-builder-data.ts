@@ -197,7 +197,7 @@ export const bundleSteps: BundleStep[] = [
         title: "Wyze Sense Hub (Required)",
         description: "Connects sensors and keeps your system online.",
         price: 0,
-        compareAt: 0,
+        compareAt: 29.92,
         visual: "hub",
         imageSrc: senseHubImage,
       },

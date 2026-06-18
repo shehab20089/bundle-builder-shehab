@@ -136,7 +136,9 @@ export function ProductCard({
           ) : null}
 
           <div className="text-right leading-none">
-            {product.compareAt && product.compareAt > product.price ? (
+            {product.price > 0 &&
+            product.compareAt &&
+            product.compareAt > product.price ? (
               <div className="text-bundle-danger mb-[3px] text-base leading-none line-through">
                 {currencyFormatter.format(product.compareAt)}
               </div>
