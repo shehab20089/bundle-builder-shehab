@@ -7,6 +7,7 @@ type QuantityStepperProps = {
   value: number;
   label: string;
   compact?: boolean;
+  surface?: "default" | "review";
   onDecrement: () => void;
   onIncrement: () => void;
 };
@@ -15,9 +16,12 @@ export function QuantityStepper({
   value,
   label,
   compact = false,
+  surface = "default",
   onDecrement,
   onIncrement,
 }: QuantityStepperProps) {
+  const isReviewSurface = surface === "review";
+
   return (
     <div
       className={cn(
@@ -30,7 +34,12 @@ export function QuantityStepper({
         type="button"
         variant="outline"
         size="icon-xs"
-        className="size-[18px] rounded bg-[#F0F4F7] text-[#525963] shadow-none hover:bg-slate-50 [&_svg:not([class*='size-'])]:size-2"
+        className={cn(
+          "size-[18px] rounded text-[#525963] shadow-none [&_svg:not([class*='size-'])]:size-2",
+          isReviewSurface
+            ? "border-none bg-white hover:bg-white"
+            : "bg-[#F0F4F7] hover:bg-slate-50",
+        )}
         aria-label={`Decrease ${label}`}
         disabled={value === 0}
         onClick={onDecrement}
@@ -46,7 +55,12 @@ export function QuantityStepper({
         type="button"
         variant="outline"
         size="icon-xs"
-        className="size-5 rounded-[4px] border-none bg-[#F0F4F7] text-[#525963] shadow-none hover:bg-slate-50 [&_svg:not([class*='size-'])]:size-2"
+        className={cn(
+          "size-5 rounded-[4px] border-none text-[#525963] shadow-none [&_svg:not([class*='size-'])]:size-2",
+          isReviewSurface
+            ? "bg-white hover:bg-white"
+            : "bg-[#F0F4F7] hover:bg-slate-50",
+        )}
         aria-label={`Increase ${label}`}
         onClick={onIncrement}
       >

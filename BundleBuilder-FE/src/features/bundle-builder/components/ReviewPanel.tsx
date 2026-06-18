@@ -244,6 +244,7 @@ function ReviewLine({ item, onDecrement, onIncrement }: ReviewLineProps) {
       </div>
       <QuantityStepper
         compact
+        surface="review"
         value={item.quantity}
         label={item.title}
         onDecrement={onDecrement}
