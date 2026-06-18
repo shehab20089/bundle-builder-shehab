@@ -45,7 +45,7 @@ export function ProductCard({
       )}
     >
       {product.badge ? (
-        <Badge className="absolute left-2.5 top-2.5 h-[18px] rounded-full bg-[var(--bundle-purple)] px-2 text-[9px] font-black leading-none text-white shadow-none">
+        <Badge className="absolute top-2.5 left-2.5 h-[18px] rounded-full bg-[var(--bundle-purple)] px-2 text-[9px] leading-none font-black text-white shadow-none">
           {product.badge}
         </Badge>
       ) : null}
@@ -56,10 +56,10 @@ export function ProductCard({
 
       <div className="flex min-w-0 flex-col gap-1.5">
         <div className="flex min-h-[54px] flex-col gap-1">
-          <h3 className="truncate text-[12.5px] font-black leading-tight text-slate-950">
+          <h3 className="truncate text-[12.5px] leading-tight font-black text-slate-950">
             {product.title}
           </h3>
-          <p className="line-clamp-2 max-w-[190px] text-[9.5px] font-medium leading-[1.22] text-slate-500">
+          <p className="line-clamp-2 max-w-[190px] text-[9.5px] leading-[1.22] font-medium text-slate-500">
             {product.description}{" "}
             {product.learnMore ? (
               <a

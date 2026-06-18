@@ -1,11 +1,11 @@
-import { createElement } from 'react'
-import type { RouteObject } from 'react-router-dom'
+import { createElement } from "react";
+import type { RouteObject } from "react-router-dom";
 
-import { BundleBuilderRoute } from './BundleBuilderRoute'
+import { BundleBuilderRoute } from "./BundleBuilderRoute";
 
 export const bundleBuilderRoutes: RouteObject[] = [
   {
-    path: '/',
+    path: "/",
     element: createElement(BundleBuilderRoute),
   },
-]
+];

@@ -3,13 +3,13 @@ import type {
   BundleStep,
   ProductSelection,
   SelectionState,
-} from "../types/bundle-builder"
+} from "../types/bundle-builder";
 
 const colorVariants = [
   { id: "white", label: "White", swatch: "bg-white" },
   { id: "gray", label: "Gray", swatch: "bg-slate-300" },
   { id: "black", label: "Black", swatch: "bg-zinc-950" },
-]
+];
 
 export const bundleSteps: BundleStep[] = [
   {
@@ -140,7 +140,7 @@ export const bundleSteps: BundleStep[] = [
       },
     ],
   },
-]
+];
 
 export const initialSelections: SelectionState = {
   "cam-v4": {
@@ -179,7 +179,7 @@ export const initialSelections: SelectionState = {
       default: 2,
     },
   },
-}
+};
 
 export const fulfillmentItems = [
   {
@@ -188,15 +188,15 @@ export const fulfillmentItems = [
     compareAt: 5.99,
     price: 0,
   },
-]
+];
 
 export const bundleProducts: BundleProduct[] = bundleSteps.flatMap(
   (step) => step.products,
-)
+);
 
 export function getDefaultSelection(product: BundleProduct): ProductSelection {
   return {
     activeVariantId: product.variants?.[0]?.id ?? "default",
     quantities: {},
-  }
+  };
 }

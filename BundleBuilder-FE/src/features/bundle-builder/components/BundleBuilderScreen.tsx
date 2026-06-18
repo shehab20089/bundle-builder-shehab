@@ -62,12 +62,12 @@ export function BundleBuilderScreen() {
                 <AccordionItem
                   key={step.id}
                   value={step.id}
-                  className="overflow-hidden  transition-colors data-[state=open]:rounded-lg   data-[state=open]:bg-[var(--bundle-panel)] data-[state=open]:border-none data-[state=closed]:border-b border-[#1F1F1F] data-[state=open]:shadow-[inset_0_0_0_1px_rgba(113,91,246,0.03)]"
+                  className="overflow-hidden border-[#1F1F1F] transition-colors data-[state=closed]:border-b data-[state=open]:rounded-lg data-[state=open]:border-none data-[state=open]:bg-[var(--bundle-panel)] data-[state=open]:shadow-[inset_0_0_0_1px_rgba(113,91,246,0.03)]"
                 >
-                  <div className="flex h-[33px] items-center  px-[15px] text-[12px] font-medium uppercase leading-none tracking-[1.6px] text-[#484848]">
+                  <div className="flex h-[33px] items-center px-[15px] text-[12px] leading-none font-medium tracking-[1.6px] text-[#484848] uppercase">
                     Step {step.stepNumber} of {bundleSteps.length}
                   </div>
-                  <AccordionTrigger className="items-center rounded-none px-[15px] py-5 text-left border-[#1F1F1F] border-x-0 border-t border-b-0 hover:no-underline [&_[data-slot=accordion-trigger-icon]]:!ml-1 [&_[data-slot=accordion-trigger-icon]]:text-[var(--bundle-purple)]">
+                  <AccordionTrigger className="items-center rounded-none border-x-0 border-t border-b-0 border-[#1F1F1F] px-[15px] py-5 text-left hover:no-underline [&_[data-slot=accordion-trigger-icon]]:!ml-1 [&_[data-slot=accordion-trigger-icon]]:text-[var(--bundle-purple)]">
                     <div className="flex min-w-0 items-center gap-2">
                       <StepIcon className="size-5 shrink-0 text-slate-300" />
                       <span className="truncate text-xl font-black tracking-tight text-slate-950">
@@ -76,7 +76,7 @@ export function BundleBuilderScreen() {
                     </div>
                     <span
                       className={cn(
-                        "ml-auto mr-1 text-[11px] font-bold text-[var(--bundle-purple)]",
+                        "mr-1 ml-auto text-[11px] font-bold text-[var(--bundle-purple)]",
                         selectedCount === 0 && "text-slate-400",
                       )}
                     >
@@ -84,7 +84,7 @@ export function BundleBuilderScreen() {
                     </span>
                   </AccordionTrigger>
                   <AccordionContent className="pb-3">
-                    <div className="px-3 pb-3 pt-2">
+                    <div className="px-3 pt-2 pb-3">
                       <div
                         className={cn(
                           "grid gap-2.5",

@@ -1,31 +1,31 @@
-import { CheckCircle2Icon, TruckIcon } from "lucide-react"
+import { CheckCircle2Icon, TruckIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
-import { fulfillmentItems } from "../apis/bundle-builder-data"
-import type { ReviewLineItem, StepId } from "../types/bundle-builder"
-import { ProductVisual } from "./ProductVisual"
-import { QuantityStepper } from "./QuantityStepper"
+import { fulfillmentItems } from "../apis/bundle-builder-data";
+import type { ReviewLineItem, StepId } from "../types/bundle-builder";
+import { ProductVisual } from "./ProductVisual";
+import { QuantityStepper } from "./QuantityStepper";
 
 type ReviewPanelProps = {
-  lineItems: ReviewLineItem[]
-  subtotal: number
-  compareTotal: number
-  onDecrement: (productId: string, variantId: string) => void
-  onIncrement: (productId: string, variantId: string) => void
-}
+  lineItems: ReviewLineItem[];
+  subtotal: number;
+  compareTotal: number;
+  onDecrement: (productId: string, variantId: string) => void;
+  onIncrement: (productId: string, variantId: string) => void;
+};
 
 const currencyFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
-})
+});
 
 const reviewGroups: Array<{ id: StepId; label: string }> = [
   { id: "cameras", label: "CAMERAS" },
   { id: "sensors", label: "SENSORS" },
   { id: "protection", label: "ACCESSORIES" },
-]
+];
 
 export function ReviewPanel({
   lineItems,
@@ -34,8 +34,8 @@ export function ReviewPanel({
   onDecrement,
   onIncrement,
 }: ReviewPanelProps) {
-  const savings = Math.max(0, compareTotal - subtotal)
-  const plan = lineItems.find((item) => item.stepId === "plan")
+  const savings = Math.max(0, compareTotal - subtotal);
+  const plan = lineItems.find((item) => item.stepId === "plan");
 
   return (
     <aside
@@ -43,7 +43,7 @@ export function ReviewPanel({
       aria-labelledby="review-heading"
     >
       <div className="flex flex-col gap-1">
-        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
+        <p className="text-[10px] font-bold tracking-[0.18em] text-slate-400 uppercase">
           Review
         </p>
         <h2 id="review-heading" className="text-xl font-black tracking-tight">
@@ -59,10 +59,10 @@ export function ReviewPanel({
 
       <div className="flex flex-col gap-4">
         {reviewGroups.map((group) => {
-          const items = lineItems.filter((item) => item.stepId === group.id)
+          const items = lineItems.filter((item) => item.stepId === group.id);
 
           if (items.length === 0) {
-            return null
+            return null;
           }
 
           return (
@@ -75,13 +75,17 @@ export function ReviewPanel({
                   <ReviewLine
                     key={item.key}
                     item={item}
-                    onDecrement={() => onDecrement(item.productId, item.variantId)}
-                    onIncrement={() => onIncrement(item.productId, item.variantId)}
+                    onDecrement={() =>
+                      onDecrement(item.productId, item.variantId)
+                    }
+                    onIncrement={() =>
+                      onIncrement(item.productId, item.variantId)
+                    }
                   />
                 ))}
               </div>
             </section>
-          )
+          );
         })}
 
         {plan ? (
@@ -95,9 +99,7 @@ export function ReviewPanel({
                 {plan.title}
               </div>
               <div className="text-right text-[11px]">
-                <span className="text-slate-400 line-through">
-                  $120.00/mo
-                </span>{" "}
+                <span className="text-slate-400 line-through">$120.00/mo</span>{" "}
                 <span className="font-black text-[var(--bundle-purple)]">
                   $99/mo
                 </span>
@@ -132,7 +134,7 @@ export function ReviewPanel({
       </div>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-[120px_1fr] sm:items-center lg:grid-cols-1">
-        <div className="flex size-24 rotate-[-10deg] items-center justify-center rounded-full bg-[var(--bundle-purple)] p-3 text-center text-[11px] font-black leading-tight text-white shadow-lg shadow-violet-200 [clip-path:polygon(50%_0%,61%_12%,78%_7%,84%_23%,100%_32%,91%_49%,100%_66%,84%_75%,78%_93%,61%_88%,50%_100%,39%_88%,22%_93%,16%_75%,0_66%,9%_49%,0_32%,16%_23%,22%_7%,39%_12%)]">
+        <div className="flex size-24 rotate-[-10deg] items-center justify-center rounded-full bg-[var(--bundle-purple)] p-3 text-center text-[11px] leading-tight font-black text-white shadow-lg shadow-violet-200 [clip-path:polygon(50%_0%,61%_12%,78%_7%,84%_23%,100%_32%,91%_49%,100%_66%,84%_75%,78%_93%,61%_88%,50%_100%,39%_88%,22%_93%,16%_75%,0_66%,9%_49%,0_32%,16%_23%,22%_7%,39%_12%)]">
           100%
           <br />
           worry-free
@@ -165,14 +167,14 @@ export function ReviewPanel({
         </div>
       </div>
     </aside>
-  )
+  );
 }
 
 type ReviewLineProps = {
-  item: ReviewLineItem
-  onDecrement: () => void
-  onIncrement: () => void
-}
+  item: ReviewLineItem;
+  onDecrement: () => void;
+  onIncrement: () => void;
+};
 
 function ReviewLine({ item, onDecrement, onIncrement }: ReviewLineProps) {
   return (
@@ -208,5 +210,5 @@ function ReviewLine({ item, onDecrement, onIncrement }: ReviewLineProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

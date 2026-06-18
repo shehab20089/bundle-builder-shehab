@@ -1,14 +1,14 @@
-import { ShieldCheckIcon } from "lucide-react"
+import { ShieldCheckIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-import type { ProductVisualKind } from "../types/bundle-builder"
+import type { ProductVisualKind } from "../types/bundle-builder";
 
 type ProductVisualProps = {
-  kind: ProductVisualKind
-  compact?: boolean
-  className?: string
-}
+  kind: ProductVisualKind;
+  compact?: boolean;
+  className?: string;
+};
 
 export function ProductVisual({
   kind,
@@ -19,80 +19,80 @@ export function ProductVisual({
     "relative flex items-center justify-center",
     compact ? "size-9 [&>*]:scale-[0.45]" : "h-20 w-full [&>*]:scale-[0.92]",
     className,
-  )
+  );
 
   if (kind === "cam-v4") {
     return (
       <div className={frameClassName} aria-hidden="true">
         <div className="absolute bottom-4 h-2 w-12 rounded-full bg-slate-200 blur-[2px]" />
-        <div className="relative size-12 rounded-full bg-zinc-950 shadow-lg shadow-slate-300 ring-4 ring-white">
-          <div className="absolute left-4 top-4 size-4 rounded-full border border-slate-600 bg-zinc-800">
-            <div className="absolute left-1 top-1 size-1.5 rounded-full bg-cyan-300" />
+        <div className="relative size-12 rounded-full bg-zinc-950 shadow-lg ring-4 shadow-slate-300 ring-white">
+          <div className="absolute top-4 left-4 size-4 rounded-full border border-slate-600 bg-zinc-800">
+            <div className="absolute top-1 left-1 size-1.5 rounded-full bg-cyan-300" />
           </div>
           <div className="absolute bottom-1 left-1/2 h-4 w-1 -translate-x-1/2 rounded-full bg-zinc-800" />
         </div>
       </div>
-    )
+    );
   }
 
   if (kind === "cam-pan") {
     return (
       <div className={frameClassName} aria-hidden="true">
         <div className="relative h-20 w-16">
-          <div className="absolute left-3 top-1 size-10 rounded-lg bg-slate-100 shadow-xl shadow-slate-300 ring-1 ring-slate-200">
-            <div className="absolute left-3 top-3 size-4 rounded-full bg-zinc-900">
-              <div className="absolute left-1.5 top-1.5 size-1 rounded-full bg-cyan-300" />
+          <div className="absolute top-1 left-3 size-10 rounded-lg bg-slate-100 shadow-xl ring-1 shadow-slate-300 ring-slate-200">
+            <div className="absolute top-3 left-3 size-4 rounded-full bg-zinc-900">
+              <div className="absolute top-1.5 left-1.5 size-1 rounded-full bg-cyan-300" />
             </div>
           </div>
           <div className="absolute bottom-3 left-1 h-7 w-14 rounded-xl bg-white shadow-lg ring-1 ring-slate-200" />
           <div className="absolute bottom-0 left-4 h-4 w-8 rounded-b-lg bg-slate-200" />
         </div>
       </div>
-    )
+    );
   }
 
   if (kind === "floodlight") {
     return (
       <div className={frameClassName} aria-hidden="true">
         <div className="relative h-20 w-24">
-          <div className="absolute left-4 top-3 h-10 w-8 rotate-[-14deg] rounded-xl bg-white shadow-lg ring-1 ring-slate-200" />
-          <div className="absolute right-4 top-3 h-10 w-8 rotate-[14deg] rounded-xl bg-white shadow-lg ring-1 ring-slate-200" />
+          <div className="absolute top-3 left-4 h-10 w-8 rotate-[-14deg] rounded-xl bg-white shadow-lg ring-1 ring-slate-200" />
+          <div className="absolute top-3 right-4 h-10 w-8 rotate-[14deg] rounded-xl bg-white shadow-lg ring-1 ring-slate-200" />
           <div className="absolute bottom-2 left-1/2 h-12 w-7 -translate-x-1/2 rounded-lg bg-slate-100 shadow-lg ring-1 ring-slate-200">
             <div className="absolute bottom-2 left-2 size-3 rounded-full bg-zinc-900" />
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   if (kind === "doorbell") {
     return (
       <div className={frameClassName} aria-hidden="true">
         <div className="relative h-20 w-20">
-          <div className="absolute left-2 top-4 h-14 w-6 rounded-md bg-zinc-950 shadow-lg">
-            <div className="absolute left-2 top-2 size-2 rounded-full bg-cyan-300" />
+          <div className="absolute top-4 left-2 h-14 w-6 rounded-md bg-zinc-950 shadow-lg">
+            <div className="absolute top-2 left-2 size-2 rounded-full bg-cyan-300" />
             <div className="absolute bottom-2 left-1.5 size-3 rounded-full border border-violet-500" />
           </div>
-          <div className="absolute right-4 top-8 h-10 w-7 rounded-md bg-zinc-900 shadow-lg">
+          <div className="absolute top-8 right-4 h-10 w-7 rounded-md bg-zinc-900 shadow-lg">
             <div className="absolute inset-x-1 top-2 h-px bg-slate-600" />
           </div>
-          <div className="absolute left-0 top-8 h-px w-8 bg-teal-300" />
+          <div className="absolute top-8 left-0 h-px w-8 bg-teal-300" />
         </div>
       </div>
-    )
+    );
   }
 
   if (kind === "battery-cam") {
     return (
       <div className={frameClassName} aria-hidden="true">
         <div className="relative h-20 w-16">
-          <div className="absolute left-5 top-4 h-14 w-8 rotate-[-12deg] rounded-md bg-white shadow-xl ring-1 ring-slate-200">
-            <div className="absolute left-2 top-2 size-4 rounded-full bg-zinc-950" />
+          <div className="absolute top-4 left-5 h-14 w-8 rotate-[-12deg] rounded-md bg-white shadow-xl ring-1 ring-slate-200">
+            <div className="absolute top-2 left-2 size-4 rounded-full bg-zinc-950" />
             <div className="absolute bottom-2 left-2 h-1.5 w-4 rounded-full bg-slate-200" />
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   if (kind === "plan") {
@@ -102,7 +102,7 @@ export function ProductVisual({
           <ShieldCheckIcon />
         </div>
       </div>
-    )
+    );
   }
 
   if (kind === "motion-sensor") {
@@ -112,7 +112,7 @@ export function ProductVisual({
           <div className="m-2 size-7 rounded-md bg-white ring-1 ring-slate-200" />
         </div>
       </div>
-    )
+    );
   }
 
   if (kind === "hub") {
@@ -122,7 +122,7 @@ export function ProductVisual({
           <div className="mx-auto mt-3 h-1 w-7 rounded-full bg-slate-300" />
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -134,5 +134,5 @@ export function ProductVisual({
         <div className="rounded-[2px] bg-zinc-700" />
       </div>
     </div>
-  )
+  );
 }

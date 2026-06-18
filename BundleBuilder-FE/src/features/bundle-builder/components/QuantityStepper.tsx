@@ -1,15 +1,15 @@
-import { MinusIcon, PlusIcon } from "lucide-react"
+import { MinusIcon, PlusIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type QuantityStepperProps = {
-  value: number
-  label: string
-  compact?: boolean
-  onDecrement: () => void
-  onIncrement: () => void
-}
+  value: number;
+  label: string;
+  compact?: boolean;
+  onDecrement: () => void;
+  onIncrement: () => void;
+};
 
 export function QuantityStepper({
   value,
@@ -37,7 +37,9 @@ export function QuantityStepper({
       >
         <MinusIcon data-icon="inline-start" />
       </Button>
-      <span className={cn("min-w-3 text-center text-[10px]", compact && "min-w-2")}>
+      <span
+        className={cn("min-w-3 text-center text-[10px]", compact && "min-w-2")}
+      >
         {value}
       </span>
       <Button
@@ -51,5 +53,5 @@ export function QuantityStepper({
         <PlusIcon data-icon="inline-start" />
       </Button>
     </div>
-  )
+  );
 }

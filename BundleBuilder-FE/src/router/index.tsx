@@ -1,7 +1,7 @@
-import { createBrowserRouter, type RouteObject } from 'react-router-dom'
+import { createBrowserRouter, type RouteObject } from "react-router-dom";
 
-import { bundleBuilderRoutes } from '../features/bundle-builder/routes'
+import { bundleBuilderRoutes } from "../features/bundle-builder/routes";
 
-const routes: RouteObject[] = [...bundleBuilderRoutes]
+const routes: RouteObject[] = [...bundleBuilderRoutes];
 
-export const router = createBrowserRouter(routes)
+export const router = createBrowserRouter(routes);

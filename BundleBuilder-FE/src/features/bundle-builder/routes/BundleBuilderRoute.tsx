@@ -1,5 +1,5 @@
-import { BundleBuilderScreen } from "../components/BundleBuilderScreen"
+import { BundleBuilderScreen } from "../components/BundleBuilderScreen";
 
 export function BundleBuilderRoute() {
-  return <BundleBuilderScreen />
+  return <BundleBuilderScreen />;
 }
