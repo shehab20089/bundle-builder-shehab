@@ -6,12 +6,8 @@ import {
   getDefaultSelection,
   initialSelections,
 } from "../apis/bundle-builder-data";
-import type {
-  BundleProduct,
-  ProductSelection,
-  SelectionState,
-  StepId,
-} from "../types/bundle-builder";
+import type { SelectionState, StepId } from "../types/bundle-builder";
+import { getQuantityForSelection, getSelection } from "../utils/selections";
 import { loadSavedConfiguration, saveConfiguration } from "../utils/storage";
 
 const productById = new Map(
@@ -51,27 +47,6 @@ export function createInitialSelectionState(savedSelections?: SelectionState) {
 
     return state;
   }, {});
-}
-
-export function getSelection(
-  state: SelectionState,
-  product: BundleProduct,
-): ProductSelection {
-  return state[product.id] ?? getDefaultSelection(product);
-}
-
-export function getQuantityForSelection(
-  selection: ProductSelection,
-  variantId: string,
-) {
-  return selection.quantities[variantId] ?? 0;
-}
-
-export function getProductTotal(selection: ProductSelection) {
-  return Object.values(selection.quantities).reduce(
-    (total, quantity) => total + quantity,
-    0,
-  );
 }
 
 const savedConfiguration = loadSavedConfiguration();

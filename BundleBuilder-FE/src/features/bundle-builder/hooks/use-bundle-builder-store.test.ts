@@ -2,9 +2,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
   createInitialSelectionState,
-  getQuantityForSelection,
   useBundleBuilderStore,
 } from "./use-bundle-builder-store";
+import { getQuantityForSelection } from "../utils/selections";
 import { loadSavedConfiguration, saveConfiguration } from "../utils/storage";
 
 function createMemoryStorage() {

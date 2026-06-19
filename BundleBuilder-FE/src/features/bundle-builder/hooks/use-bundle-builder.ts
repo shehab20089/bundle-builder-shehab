@@ -1,17 +1,15 @@
 import { useMemo } from "react";
 
-import { bundleProducts, bundleSteps } from "../apis/bundle-builder-data";
-import type {
-  BundleProduct,
-  ReviewLineItem,
-  StepId,
-} from "../types/bundle-builder";
+import type { BundleProduct, StepId } from "../types/bundle-builder";
 import {
-  getProductTotal,
-  getQuantityForSelection,
-  getSelection,
-  useBundleBuilderStore,
-} from "./use-bundle-builder-store";
+  getBundleTotals,
+  getProductActiveQuantity,
+  getProductActiveVariantId,
+  getSelectedLineItems,
+  getSelectedProductTotalQuantity,
+  getStepSelectedCount,
+} from "../utils/bundle-builder-selectors";
+import { useBundleBuilderStore } from "./use-bundle-builder-store";
 
 export function useBundleBuilder() {
   const openStep = useBundleBuilderStore((state) => state.openStep);
@@ -24,68 +22,26 @@ export function useBundleBuilder() {
     (state) => state.saveCurrentConfiguration,
   );
 
-  const selectedLineItems = useMemo<ReviewLineItem[]>(() => {
-    return bundleProducts.flatMap((product) => {
-      const selection = getSelection(selections, product);
-
-      return Object.entries(selection.quantities)
-        .filter(([, quantity]) => quantity > 0)
-        .map(([variantId, quantity]) => {
-          const variant = product.variants?.find(
-            (item) => item.id === variantId,
-          );
-
-          return {
-            key: `${product.id}:${variantId}`,
-            productId: product.id,
-            variantId,
-            stepId: product.stepId,
-            title: product.title,
-            variantLabel: variant?.label,
-            quantity,
-            price: product.price,
-            compareAt: product.compareAt,
-            visual: product.visual,
-            imageSrc: product.imageSrc ?? variant?.imageSrc,
-          };
-        });
-    });
-  }, [selections]);
-
-  const subtotal = selectedLineItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0,
+  const selectedLineItems = useMemo(
+    () => getSelectedLineItems(selections),
+    [selections],
   );
-
-  const compareTotal = selectedLineItems.reduce(
-    (total, item) => total + (item.compareAt ?? item.price) * item.quantity,
-    0,
-  );
+  const { subtotal, compareTotal } = getBundleTotals(selectedLineItems);
 
   function getActiveVariantId(product: BundleProduct) {
-    return getSelection(selections, product).activeVariantId;
+    return getProductActiveVariantId(selections, product);
   }
 
   function getActiveQuantity(product: BundleProduct) {
-    const selection = getSelection(selections, product);
-
-    return getQuantityForSelection(selection, selection.activeVariantId);
+    return getProductActiveQuantity(selections, product);
   }
 
   function getProductTotalQuantity(product: BundleProduct) {
-    return getProductTotal(getSelection(selections, product));
+    return getSelectedProductTotalQuantity(selections, product);
   }
 
   function selectedCountForStep(stepId: StepId) {
-    const step = bundleSteps.find((item) => item.id === stepId);
-
-    if (!step) {
-      return 0;
-    }
-
-    return step.products.filter((product) => {
-      return getProductTotalQuantity(product) > 0;
-    }).length;
+    return getStepSelectedCount(selections, stepId);
   }
 
   return {
