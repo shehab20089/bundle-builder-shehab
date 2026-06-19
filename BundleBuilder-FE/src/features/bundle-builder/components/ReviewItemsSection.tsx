@@ -2,7 +2,10 @@ import { cn } from "@/lib/utils";
 
 import type { ReviewLineItem } from "../types/bundle-builder";
 import { ReviewLine } from "./ReviewLine";
-import { reviewGroups, reviewSeparator } from "./review-panel.constants";
+import {
+  reviewGroups,
+  reviewSeparator,
+} from "../constants/review-panel.constants";
 
 type ReviewItemsSectionProps = {
   lineItems: ReviewLineItem[];

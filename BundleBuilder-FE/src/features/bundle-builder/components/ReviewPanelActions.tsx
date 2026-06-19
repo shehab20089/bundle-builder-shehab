@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 
 import { formatCurrency } from "../utils/formatters";
-import { financingMonthlyLabel } from "./review-panel.constants";
+import { financingMonthlyLabel } from "../constants/review-panel.constants";
 
 import satisfactionBadgeImage from "../assets/images/satisfactionBadge.png";
 

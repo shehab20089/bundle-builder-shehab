@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { fulfillmentItems } from "../apis/bundle-builder-data";
 import type { ReviewLineItem } from "../types/bundle-builder";
 import { formatCurrency, formatMonthlyPrice } from "../utils/formatters";
-import { reviewSeparator } from "./review-panel.constants";
+import { reviewSeparator } from "../constants/review-panel.constants";
 
 import ShippingTruckIcon from "../assets/icons/shipping-truck.svg?react";
 import WyzeShieldIcon from "../assets/icons/wyze-shield.svg?react";
