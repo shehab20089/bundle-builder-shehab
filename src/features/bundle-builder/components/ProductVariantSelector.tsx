@@ -26,7 +26,7 @@ export function ProductVariantSelector({
             variant="outline"
             size="xs"
             className={cn(
-              "h-[30px] gap-1 rounded-[2px] border-slate-200 bg-white px-1.5 pr-2 text-[9.5px] font-bold text-slate-700 shadow-none hover:bg-slate-50",
+              "h-[30px] gap-1 rounded-[2px] border-slate-200 bg-white px-1.5 pr-2 text-[9.5px] font-medium text-[#1F1F1F] shadow-none hover:bg-slate-50",
               selected &&
                 "border-bundle-success bg-bundle-success-soft text-bundle-obsidian hover:bg-bundle-success-soft",
             )}
