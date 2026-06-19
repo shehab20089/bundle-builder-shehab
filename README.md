@@ -21,6 +21,12 @@ bundle builder.
   <strong>localStorage persistence</strong>
 </p>
 
+<p>
+  <a href="https://bundle-builder-shehab.vercel.app/">
+    <img alt="Open Live Demo" src="https://img.shields.io/badge/Open_Live_Demo-bundle--builder--shehab.vercel.app-4E2FD2?style=for-the-badge">
+  </a>
+</p>
+
 </div>
 
 ---
@@ -28,6 +34,7 @@ bundle builder.
 ## Table Of Contents
 
 - [Overview](#overview)
+- [Live Demo](#live-demo)
 - [Quick Start](#quick-start)
 - [Scripts](#scripts)
 - [Project Structure](#project-structure)
@@ -51,6 +58,10 @@ variant quantities, totals, savings, shipping, and checkout state in sync.
 > **Status:** Frontend prototype focused on UI fidelity, state behavior,
 > persistence, and clean project structure. No backend or real checkout is
 > required for this assignment.
+
+## Live Demo
+
+> **Open the deployed app:** [https://bundle-builder-shehab.vercel.app/](https://bundle-builder-shehab.vercel.app/)
 
 ## Quick Start
 
