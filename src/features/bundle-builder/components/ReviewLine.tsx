@@ -26,7 +26,7 @@ export function ReviewLine({
         />
       </span>
       <div className="min-w-0">
-        <p className="text-bundle-obsidian text-sm">{item.title}</p>
+        <p className="text-bundle-obsidian text-sm font-medium">{item.title}</p>
         {item.variantLabel ? (
           <p className="text-bundle-muted text-[10px] leading-none">
             {item.variantLabel}
@@ -43,7 +43,7 @@ export function ReviewLine({
       />
       <div className="min-w-14 text-right text-sm leading-tight">
         {item.compareAt && item.compareAt > item.price ? (
-          <div className="text-bundle-price-muted line-through">
+          <div className="text-bundle-price-muted font-medium line-through">
             {formatCurrency(item.compareAt)}
           </div>
         ) : null}

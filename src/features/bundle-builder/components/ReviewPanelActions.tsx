@@ -42,7 +42,7 @@ export function ReviewPanelActions({
         </div>
       </div>
 
-      <p className="text-bundle-success mt-2 text-center text-xs leading-3 font-bold tracking-[-0.01em]">
+      <p className="text-bundle-success mt-2 text-center text-xs leading-3 font-semibold tracking-[-0.01em]">
         Congrats! You&apos;re saving {formatCurrency(savings)} on your security
         bundle!
       </p>

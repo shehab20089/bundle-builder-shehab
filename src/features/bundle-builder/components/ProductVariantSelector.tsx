@@ -43,7 +43,7 @@ export function ProductVariantSelector({
             ) : (
               <span
                 className={cn(
-                  "size-2 rounded-full border border-slate-200",
+                  "size-2 rounded-full border border-slate-200 font-medium",
                   variant.swatch,
                 )}
               />

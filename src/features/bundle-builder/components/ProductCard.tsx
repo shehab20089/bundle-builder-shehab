@@ -46,7 +46,7 @@ export function ProductCard({
       )}
     >
       {product.badge ? (
-        <Badge className="bg-bundle-brand absolute top-2.5 left-2.5 h-[19px] rounded-full px-2 text-xs leading-none font-normal text-white shadow-none">
+        <Badge className="bg-bundle-brand absolute top-2.5 left-2.5 h-[19px] rounded-full px-2 text-xs leading-none font-semibold text-white shadow-none">
           {product.badge}
         </Badge>
       ) : null}
@@ -62,10 +62,10 @@ export function ProductCard({
 
       <div className="flex min-w-0 flex-col gap-2.5">
         <div className="flex min-h-[54px] flex-col gap-2">
-          <h3 className="text-bundle-heading truncate text-base leading-tight">
+          <h3 className="text-bundle-heading truncate text-base leading-tight font-semibold">
             {product.title}
           </h3>
-          <p className="text-bundle-heading/75 text-xs leading-[1.22] font-normal">
+          <p className="text-bundle-heading/75 text-xs leading-[1.22] font-medium">
             {product.description}{" "}
             {product.learnMore ? (
               <a href="#bundle-details" className="text-bundle-link underline">

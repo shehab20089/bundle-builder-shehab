@@ -63,13 +63,13 @@ export function BundleBuilderRoute() {
                   <AccordionTrigger className="border-bundle-accordion-line [&_[data-slot=accordion-trigger-icon]]:text-bundle-brand items-center rounded-none border-x-0 border-t border-b-0 px-[15px] py-5 text-left hover:no-underline [&_[data-slot=accordion-trigger-icon]]:!ml-1">
                     <div className="flex min-w-0 items-center gap-2">
                       <StepIcon className="size-5 shrink-0 text-slate-300" />
-                      <span className="text-bundle-obsidian truncate text-[22px] font-normal tracking-tight">
+                      <span className="text-bundle-obsidian truncate text-[22px] font-semibold tracking-tight">
                         {step.title}
                       </span>
                     </div>
                     <span
                       className={cn(
-                        "text-bundle-brand mr-1 ml-auto text-[11px] font-bold",
+                        "text-bundle-brand mr-1 ml-auto text-sm font-medium",
                         selectedCount === 0 && "text-slate-400",
                       )}
                     >
@@ -120,7 +120,7 @@ export function BundleBuilderRoute() {
                           <Button
                             type="button"
                             variant="outline"
-                            className="border-bundle-brand text-bundle-brand h-8 rounded-md bg-white px-5 text-xs font-black shadow-none hover:bg-violet-50"
+                            className="border-bundle-brand text-bundle-brand hover:bg-bundle-brand/10 hover:text-bundle-brand rounded-[5px h-[39px] cursor-pointer rounded-md bg-transparent px-5 text-lg font-semibold shadow-none"
                             onClick={() => builder.goToNextStep(step.id)}
                           >
                             {step.nextLabel}
